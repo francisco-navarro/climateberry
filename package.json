@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/francisco-navarro/climateberry/issues"
   },
-  "homepage": "https://github.com/francisco-navarro/climateberry#readme"
+  "homepage": "https://github.com/francisco-navarro/climateberry#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
