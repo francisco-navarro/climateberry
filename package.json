@@ -1,0 +1,19 @@
+{
+  "name": "climateberry",
+  "version": "1.0.0",
+  "description": "control de la temperatura",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/francisco-navarro/climateberry.git"
+  },
+  "author": "Paco Navarro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/francisco-navarro/climateberry/issues"
+  },
+  "homepage": "https://github.com/francisco-navarro/climateberry#readme"
+}
