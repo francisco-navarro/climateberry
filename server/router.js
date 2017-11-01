@@ -5,8 +5,13 @@ function init() {
   const loginController = require('../controller/login.controller');
 
   router.get('/temperature', (req, res) => {
-    res.json(temperatureController.get());
+    res.json(temperatureController.get(req));
   });
+
+  router.put('/temperature', (req, res) => {
+    res.json(temperatureController.put(req));
+  });
+
 
   return router;
 }
