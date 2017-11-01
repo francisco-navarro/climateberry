@@ -2,9 +2,10 @@ const gpio = require('rpi-gpio');
 const config = require('../config');
 
 function init() {
-  gpio.setup(config.temperatureGpio, gpio.DIR_OUT, () => 
+  gpio.setup(config.temperatureGpio, gpio.DIR_OUT, () => {
+    writeTemp(false);
     console.log('Configured GPIO ' + config.temperatureGpio)
-  );
+  });
 }
 
 function writeTemp (value) {
