@@ -1,5 +1,5 @@
 const gpio = require('rpi-gpio');
-const config = requier('../config');
+const config = require('../config');
 
 function init() {
   gpio.setup(config.temperatureGpio, gpio.DIR_OUT, () => 
