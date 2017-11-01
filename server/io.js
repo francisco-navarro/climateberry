@@ -8,7 +8,7 @@ function init() {
 }
 
 function writeTemp (value) {
-  gpio.write(7, value, function(err) {
+  gpio.write(config.temperatureGpio, value, function(err) {
     if (err) throw err;
     console.log('Written to pin ' + config.temperatureGpio);
   });
