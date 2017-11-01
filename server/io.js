@@ -2,15 +2,10 @@ const gpio = require('rpi-gpio');
 const config = require('../config');
 
 function init() {
-  // 
-  gpio.setup(7, gpio.DIR_OUT, write);
-  
-  function write() {
-      gpio.write(7, true, function(err) {
-          if (err) throw err;
-          console.log('Written to pin');
-      });
-  }
+  gpio.setup(config.temperatureGpio, gpio.DIR_OUT, () => {
+    writeTemp(false);
+    console.log('Configured GPIO ' + config.temperatureGpio)
+  });
 }
 
 function writeTemp (value) {
