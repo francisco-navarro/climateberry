@@ -7,6 +7,7 @@ function init() {
     
     closePins();
     gpio.setup(config.temperatureGpio, gpio.DIR_OUT, () => {
+      writeTemp(false);
       console.log('Configured GPIO ' + config.temperatureGpio)
     });
   } catch (ex) {
