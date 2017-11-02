@@ -2,11 +2,12 @@ const config = require('../config');
 let gpio;
 
 function init() {
+  console.warn('Execute with sudo for access to gpio');
+
   try{
-    gpio = require('rpi-gpio');
+    gpio = require('pi-gpio');
     
-    closePins();
-    gpio.setup(config.temperatureGpio, gpio.DIR_OUT, () => {
+    gpio.open(config.temperatureGpio, "output", () => {
       writeTemp(false);
       console.log('Configured GPIO ' + config.temperatureGpio)
     });
@@ -20,9 +21,10 @@ function init() {
 
 function closePins() {
   try {
-    gpio.destroy(function() {
-        console.log('All pins unexported');
-    });
+    // gpio.destroy(function() {
+    //     console.log('All pins unexported');
+    // });
+    gpio.close(config.temperatureGpio);
   } catch(ex) {
     console.error(ex);
   }
@@ -30,7 +32,7 @@ function closePins() {
 
 function writeTemp (value) {
   console.log('> gpio.write');
-  gpio.write(config.temperatureGpio, value, function(err) {
+  gpio.write(config.temperatureGpio, 1, function(err) {
     if (err) throw err;
     console.log('Written ' + value + ' to pin ' + config.temperatureGpio);
   });
