@@ -18,7 +18,7 @@ function get() {
 function put(req) {
   if (req.body.desired) {
     desired = req.body.desired;
-    io.writeTemp(desired>actual);
+    io.writeTemp(desired<=actual);
   }
   return {
     unit,
