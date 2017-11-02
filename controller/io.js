@@ -32,7 +32,7 @@ function closePins() {
 
 function writeTemp (value) {
   console.log('> gpio.write');
-  gpio.write(config.temperatureGpio, 1, function(err) {
+  gpio.write(config.temperatureGpio, value ? 1 : 0, function(err) {
     if (err) throw err;
     console.log('Written ' + value + ' to pin ' + config.temperatureGpio);
   });
