@@ -5,6 +5,8 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const clientMode = process.argv.some(arg => arg == 'client');
 
+app.use(bodyParser.json())
+
 if (clientMode) {
   require('./client/index')(app)
 } else {
