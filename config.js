@@ -1,3 +1,3 @@
 module.exports = {
-  temperatureGpio: 18
+  temperatureGpio: 12 // Está mapeada al 18
 };
