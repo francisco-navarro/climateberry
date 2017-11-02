@@ -5,6 +5,7 @@ function init() {
   try{
     gpio = require('rpi-gpio');
     
+    closePins();
     gpio.setup(config.temperatureGpio, gpio.DIR_OUT, () => {
       writeTemp(false);
       console.log('Configured GPIO ' + config.temperatureGpio)
@@ -14,6 +15,16 @@ function init() {
     gpio = {
       write: writeMock
     };
+  }
+}
+
+function closePins() {
+  try {
+    gpio.destroy(function() {
+        console.log('All pins unexported');
+    });
+  } catch(ex) {
+    console.error(ex);
   }
 }
 
