@@ -1,5 +1,4 @@
 const db = require('../db/db');
-const io = require('./io');
 
 let unit ='C';
 let actual = 23.5;
@@ -18,7 +17,6 @@ function get() {
 function put(req) {
   if (req.body.desired) {
     desired = req.body.desired;
-    io.writeTemp(desired<=actual);
   }
   return {
     unit,
