@@ -1,0 +1,14 @@
+{
+  "name": "homebridge-climateberry-plugin",
+  "version": "1.0.3",
+  "description": "Climateberry plugin  for homebridge ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "author": "Paco navarro",
+  "license": "ISC"
+}

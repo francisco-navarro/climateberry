@@ -19,6 +19,7 @@
   "homepage": "https://github.com/francisco-navarro/climateberry#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "mqtt": "^2.14.0",
     "pi-gpio": "0.0.8",
     "rpi-gpio": "^0.9.1"
   }

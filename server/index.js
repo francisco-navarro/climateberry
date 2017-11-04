@@ -1,8 +1,8 @@
 module.exports = function (app) {
-  const io = require('../controller/io');
   const router = require('./router');
+  const devices = require('./controller/devices.controller');
 
   console.log('starting climateberry server');
   app.use('/api', router);
-  io.init();
+  devices.init();
 };

@@ -64,3 +64,11 @@ Para obtener histórico de temperatura
 ]
 ```
 
+Plugin para homebridge
+
+Para que sea compatible con homebridge hay que entrar en homebridge-plugin y hacer
+
+``` bash
+npm link
+```
+

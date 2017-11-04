@@ -1,4 +1,4 @@
-const db = require('../db/db');
+const db = require('../../db/db');
 
 let unit ='C';
 let actual = 23.5;
