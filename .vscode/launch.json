@@ -19,6 +19,12 @@
       "args": [
         "client"
       ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test",
+      "program": "${workspaceFolder}/homebridge-plugin/index.test.js"
     }
   ]
 }

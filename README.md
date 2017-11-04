@@ -66,9 +66,19 @@ Para obtener histórico de temperatura
 
 Plugin para homebridge
 
-Para que sea compatible con homebridge hay que entrar en homebridge-plugin y hacer
+Para que sea compatible con homebridge hay que instalar
 
 ``` bash
-npm link
+npm install -g homebridge-climateberry-plugin
 ```
 
+Y luego añadir la configuración del accesorio en el config.json
+
+```javascript
+        {
+            "accessory": "Climateberry",
+	          "name": "Climateberry 1",
+            "getUrl": "http://HOST/api/status",
+            "postUrl": "http://HOST/api/order"
+      }
+``` 

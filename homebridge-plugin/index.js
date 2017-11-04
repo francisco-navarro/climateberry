@@ -36,10 +36,10 @@ mySwitch.prototype = {
     request({
         url: me.getUrl,
         method: 'GET',
+        json: true
     }, 
     function (error, response, body) {
       if (error) {
-        me.log('STATUS: ' + response.statusCode);
         me.log(error.message);
         return next(error);
       }
@@ -49,15 +49,16 @@ mySwitch.prototype = {
    
   setSwitchOnCharacteristic: function (on, next) {
     const me = this;
+    me.log('Climateberry setSwitchOnCharacteristic: ');
+    me.log(JSON.stringify(on));
     request({
       url: me.postUrl,
-      body: {'targetState': on},
+      json: {'targetState': on},
       method: 'POST',
       headers: {'Content-type': 'application/json'}
     },
     function (error, response) {
       if (error) {
-        me.log('STATUS: ' + response.statusCode);
         me.log(error.message);
         return next(error);
       }

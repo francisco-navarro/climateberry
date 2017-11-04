@@ -1,6 +1,6 @@
 {
   "name": "homebridge-climateberry-plugin",
-  "version": "1.0.3",
+  "version": "1.0.8",
   "description": "Climateberry plugin  for homebridge ",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,13 @@
   "keywords": [
     "homebridge-plugin"
   ],
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.4.0"
+  },
   "author": "Paco navarro",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.83.0"
+  }
 }
