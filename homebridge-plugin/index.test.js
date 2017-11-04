@@ -17,5 +17,4 @@ let mySwitchFn;
 index(homebridgeMock);
 
 var mySwitch = new mySwitchFn(console.log, config);
-// mySwitch.getSwitchOnCharacteristic(()=> console.log('next'));
-mySwitch.setSwitchOnCharacteristic(false, ()=> console.log('next'));
+mySwitch.getStateTemperature((err, t)=> console.log('next ', t));
