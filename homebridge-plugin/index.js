@@ -5,6 +5,7 @@ let Service;
 let Characteristic;
 
 // config url in ~/.homebridge/config.json
+// Reference types https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/gen/HomeKitTypes.js#L3219
 
 function mySwitch(log, config) {
   this.log = log;
@@ -28,7 +29,7 @@ mySwitch.prototype = {
     //   .on('get', this.getSwitchOnCharacteristic.bind(this))
     //   .on('set', this.setSwitchOnCharacteristic.bind(this));
 
-    this.temperatureService = new Service.TemperatureSensor(this.name);
+    this.temperatureService = new Service.Thermostat(this.name);
     this.temperatureService
       .getCharacteristic(Characteristic.CurrentTemperature)
       .on('get', this.getStateTemperature.bind(this));
@@ -40,13 +41,34 @@ mySwitch.prototype = {
     this.temperatureService
       .getCharacteristic(Characteristic.CurrentTemperature)
       .setProps({maxValue: 50});
-      services.push(this.temperatureService);
 
-    this.humidityService = new Service.HumiditySensor(this.name);
-    this.humidityService
-      .getCharacteristic(Characteristic.CurrentRelativeHumidity)
-      .on('get', this.getStateHumidity.bind(this));
-    services.push(this.humidityService);
+
+    // this.humidityService = new Service.HumiditySensor(this.name);
+    // this.humidityService
+    //   .getCharacteristic(Characteristic.CurrentRelativeHumidity)
+    //   .on('get', this.getStateHumidity.bind(this));
+    // services.push(this.humidityService);
+
+    this.temperatureService
+      .getCharacteristic(Characteristic.CurrentHeatingCoolingState)
+      .on('get', this.getCurrentHeatingCoolingState.bind(this));
+  
+    this.temperatureService
+      .getCharacteristic(Characteristic.TargetHeatingCoolingState)
+      .on('get', this.getTargetHeatingCoolingState.bind(this))
+			.on('set', this.setTargetHeatingCoolingState.bind(this));
+
+    this.temperatureService
+      .getCharacteristic(Characteristic.TargetTemperature)
+      .on('get', this.getTargetTemperature.bind(this))
+			.on('set', this.setTargetTemperature.bind(this));
+
+    this.temperatureService
+      .getCharacteristic(Characteristic.TemperatureDisplayUnits)
+      .on('get', this.getTemperatureDisplayUnits.bind(this))
+			.on('set', this.setTemperatureDisplayUnits.bind(this));
+
+    services.push(this.temperatureService);
 
     return services;
   },
