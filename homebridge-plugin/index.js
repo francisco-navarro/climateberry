@@ -55,7 +55,7 @@ mySwitch.prototype = {
   
     this.temperatureService
       .getCharacteristic(Characteristic.TargetHeatingCoolingState)
-      .on('get', this.getTargetHeatingCoolingState.bind(this))
+      .on('get', this.getCurrentHeatingCoolingState.bind(this))
 			.on('set', this.setTargetHeatingCoolingState.bind(this));
 
     this.temperatureService
@@ -105,6 +105,69 @@ mySwitch.prototype = {
     });
   },
 
+  getTargetTemperature: function(next) {
+    const me = this;
+    request({
+      url: me.getUrl,
+      method: 'GET',
+      json: true
+    }, 
+    function (error, response, body) {
+      if (error) {
+        me.log(error.message);
+        return next(error);
+      }
+      return next(null, body.targetTemperature);
+    });
+  },
+
+  setTargetTemperature: function (temp, next) {
+    const me = this;
+    me.log('Climateberry TargetTemperature ', temp);
+    request({
+      url: me.postUrl,
+      json: {'targetTemperature': temp},
+      method: 'POST',
+      headers: {'Content-type': 'application/json'}
+    },
+    function (error, response) {
+      if (error) {
+        me.log(error.message);
+        return next(error);
+      }
+      return next();
+    });
+  },
+
+  getTemperatureDisplayUnits: function(next) {
+    next(null, Characteristic.TemperatureDisplayUnits.CELSIUS);
+  },
+
+  getCurrentHeatingCoolingState: function(next) {
+    this.log("getCurrentHeatingCoolingState ");
+    request({
+      url: me.getUrl,
+      method: 'GET',
+      json: true
+    }, 
+    function (error, response, body) {
+      if (error) {
+        me.log(error.message);
+        return next(error);
+      }
+      if (response.body.heatingState) {
+        // Si está encendido
+        this.state = Characteristic.CurrentHeatingCoolingState.HEAT;
+        this.targetHeatingCoolingState = Characteristic.TargetHeatingCoolingState.HEAT;
+      } else {
+        // Si está apagado:
+        this.state = Characteristic.CurrentHeatingCoolingState.OFF;
+        this.targetHeatingCoolingState = Characteristic.TargetHeatingCoolingState.OFF;
+      }
+      return next(null, body.mode);
+    });
+  },
+
   // recoge si un interruptor está conectado o no
   getSwitchOnCharacteristic: function (next) {
     const me = this;
@@ -118,7 +181,7 @@ mySwitch.prototype = {
         me.log(error.message);
         return next(error);
       }
-      return next(null, body.currentState);
+      return next(null, body.currentTemp);
     });
   },
    

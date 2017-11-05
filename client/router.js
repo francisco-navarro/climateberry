@@ -4,11 +4,15 @@ function init() {
 
   var status = true;
   var temperature = 22;
+  var targetTemperature = 22;
+  var heatingState = false;
 
   router.get('/status', (req, res) => {
     res.json({
       currentState: status,
       currentTemp: temperature,
+      targetTemperature: targetTemperature,
+      heatingState: heatingState,
       currentHumidity:  60.5
     }).status(200);
   });
@@ -18,7 +22,8 @@ function init() {
   });
 
   router.post('/order', (req, res) => {
-    status = req.body.targetState;
+    status = req.body.targetState || true;
+    targetTemperature = req.body.targetTemperature || 20;
     res.json({currentState: status}).status(200);
   });
 
