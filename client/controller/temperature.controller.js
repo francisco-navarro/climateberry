@@ -14,6 +14,7 @@ const status = {
 };
 
 function update() {
+  console.log('hstate ' +status.hState);
   if (status.hState) {
     if (status.target + threshold > status.temperature) {
       io.writeTemp(true);
@@ -21,6 +22,7 @@ function update() {
       io.writeTemp(false);
     }
   } else {
+    console.log('apagado');
     io.writeTemp(false);
   }
 }
