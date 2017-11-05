@@ -8,7 +8,7 @@ function init() {
 
   router.post('/order', (req, res) => {
     temperateController.setTarget(
-      req.body.targetState,
+      req.body.heatingState,
       req.body.targetTemperature
     );
     res.json(temperateController.getStatus()).status(200);
