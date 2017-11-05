@@ -36,6 +36,8 @@ function getStatus() {
 }
 
 function setTarget(hState, temperature) {
+  console.log('setTarget hState ', hState);
+  console.log('setTarget temperature ', temperature);
   if(temperature) status.target = temperature;
   if(hState) status.hState = hState;
   update();

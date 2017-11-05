@@ -11,10 +11,6 @@ function init() {
       req.body.targetState,
       req.body.targetTemperature
     );
-    console.log('order ', {
-      state: req.body.targetState,
-      temp: req.body.targetTemperature
-    });
     res.json(temperateController.getStatus()).status(200);
   });
 
