@@ -15,7 +15,7 @@ const status = {
 
 function update() {
   status.hState = 0+status.hState;
-  if (status.hState) {
+  if (status.hState > 0) {
     if (status.target + threshold > status.temperature) {
       io.writeTemp(true);
     } else if (status.temperature + threshold >= status.target) {
