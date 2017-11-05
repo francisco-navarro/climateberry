@@ -14,13 +14,13 @@ const status = {
 };
 
 function update() {
-  if (status.hState == HeatingState.HEAT || status.hState == HeatingState.AUTO) {
+  if (status.hState) {
     if (status.target + threshold > status.temperature) {
       io.writeTemp(true);
     } else if (status.temperature + threshold >= status.target) {
       io.writeTemp(false);
     }
-  } else if (HeatingState.OFF) {
+  } else {
     io.writeTemp(false);
   }
 }
