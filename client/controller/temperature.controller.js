@@ -14,7 +14,9 @@ const status = {
 };
 
 function update() {
-  if (status.hState > 0) {
+  status.hState = 0+status.hState;
+  console.log('Estado ' + status.hState);
+  if (status.hState) {
     if (status.target + threshold > status.temperature) {
       io.writeTemp(true);
     } else if (status.temperature + threshold >= status.target) {
@@ -38,7 +40,7 @@ function setTarget(hState, temperature) {l
   console.log('setTarget hState ', hState);
   console.log('setTarget temperature ', temperature);
   if(temperature) status.target = temperature;
-  if(hState) status.hState = +hState;
+  if(hState) status.hState = hState;
   update();
 }
 
