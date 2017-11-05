@@ -42,7 +42,6 @@ mySwitch.prototype = {
       .getCharacteristic(Characteristic.CurrentTemperature)
       .setProps({maxValue: 50});
 
-
     // this.humidityService = new Service.HumiditySensor(this.name);
     // this.humidityService
     //   .getCharacteristic(Characteristic.CurrentRelativeHumidity)
@@ -143,7 +142,12 @@ mySwitch.prototype = {
     next(null, Characteristic.TemperatureDisplayUnits.CELSIUS);
   },
 
+  setTemperatureDisplayUnits: function(next) {
+    next(null, Characteristic.TemperatureDisplayUnits.CELSIUS);
+  },
+
   getCurrentHeatingCoolingState: function(next) {
+    const me = this;
     this.log("getCurrentHeatingCoolingState ");
     request({
       url: me.getUrl,
@@ -165,6 +169,24 @@ mySwitch.prototype = {
         this.targetHeatingCoolingState = Characteristic.TargetHeatingCoolingState.OFF;
       }
       return next(null, body.mode);
+    });
+  },
+
+  setTargetHeatingCoolingState: function(state, next) {
+    const me = this;
+    me.log('Climateberry change HeatingCooling state: ', state);
+    request({
+      url: me.postUrl,
+      json: {'heatingState': state},
+      method: 'POST',
+      headers: {'Content-type': 'application/json'}
+    },
+    function (error, response) {
+      if (error) {
+        me.log(error.message);
+        return next(error);
+      }
+      return next();
     });
   },
 

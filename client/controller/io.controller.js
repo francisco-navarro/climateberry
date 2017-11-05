@@ -1,4 +1,4 @@
-const config = require('../config');
+const config = require('../../config');
 let gpio;
 
 function init() {
@@ -21,9 +21,6 @@ function init() {
 
 function closePins() {
   try {
-    // gpio.destroy(function() {
-    //     console.log('All pins unexported');
-    // });
     gpio.close(config.temperatureGpio);
   } catch(ex) {
     console.error(ex);
