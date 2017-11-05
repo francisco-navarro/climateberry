@@ -14,14 +14,15 @@ const status = {
 };
 
 function update() {
-  if (status.target + threshold > status.temperature) {
-    status.hState = HeatingState.HEAT;
-    io.writeTemp(true);
-  } else if (status.temperature + threshold >= status.target) {
-    status.hState = HeatingState.OFF;
+  if (status.hState == HeatingState.HEAT || status.hState == HeatingState.AUTO) {
+    if (status.target + threshold > status.temperature) {
+      io.writeTemp(true);
+    } else if (status.temperature + threshold >= status.target) {
+      io.writeTemp(false);
+    }
+  } else if (HeatingState.OFF) {
     io.writeTemp(false);
   }
-  console.log('Reading temperature. Heating state ' + status.hState);
 }
 
 function getStatus() {
@@ -35,12 +36,7 @@ function getStatus() {
 function setTarget(hState, temperature) {
   if(temperature) status.target = temperature;
   if(hState) status.hState = hState;
-}
-
-function order (req, res) {
-  hState = req.body.heatingState;
-  targetTemperature = req.body.targetTemperature || 20;
-  return res.json({currentState: status});
+  update();
 }
 
 setInterval(update, TIMEOUT);
