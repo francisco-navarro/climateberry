@@ -15,11 +15,6 @@ $ npm start
 
 ### Ejecutar cliente:
 
-Para poder ejecutarlo correctamente con el Hub IoT, hay que configurar las siguientes variables de entorno:
-* IOT_REGISTRY_KEY - Clave con permisos de escritura en el registro, para registar un nuevo dispositivo
-* IOT_DEVICE_KEY - Clave con permiso de conexión de dispositivo. 
-
-Más información: https://docs.microsoft.com/es-es/azure/iot-hub/iot-hub-node-node-getstarted
 
 ```bash
 $ npm start client
@@ -90,3 +85,19 @@ Y luego añadir la configuración del accesorio en el config.json
             "postUrl": "http://HOST/api/order"
       }
 ``` 
+
+## Integración con IoT
+
+
+### Azure
+
+Para poder ejecutarlo correctamente con el hub IoT de Azure, hay que configurar las siguientes variables de entorno:
+* IOT_REGISTRY_KEY - Clave con permisos de escritura en el registro, para registar un nuevo dispositivo
+* IOT_DEVICE_KEY - Clave con permiso de conexión de dispositivo. 
+
+Más información: https://docs.microsoft.com/es-es/azure/iot-hub/iot-hub-node-node-getstarted
+
+### AWS IoT
+
+Instalar certificados con install-certs.sh y adjuntar en la ruta certs/ los certificados bajados de la web de aws
+![Screenshot aws](readme1.png)

@@ -1,4 +1,4 @@
-const registry = require('../../mqtt/mqtt.registry');
+const registry = require('../../mqtt/azure.registry');
 
 let device;
 
