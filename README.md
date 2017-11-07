@@ -69,7 +69,7 @@ Para obtener histórico de temperatura
 
 ## Plugin para homebridge
 
-Para que sea compatible con homebridge hay que instalar
+Integración para homebridge (interactua con homekit usando esta librería: https://github.com/nfarina/homebridge). Para que sea compatible con homebridge hay que instalar
 
 ``` bash
 npm install -g homebridge-climateberry-plugin
