@@ -67,7 +67,7 @@ Para obtener histórico de temperatura
 ]
 ```
 
-Plugin para homebridge
+## Plugin para homebridge
 
 Para que sea compatible con homebridge hay que instalar
 
