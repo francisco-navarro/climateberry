@@ -2,6 +2,9 @@
 
 Aplicación para controlar la temperatura a través de la Raspberry Pi
 
+[![dependencies Status](https://david-dm.org/francisco-navarro/climateberry/status.svg)](https://david-dm.org/francisco-navarro/climateberry)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/2ef2da957540815fb42a/maintainability)](https://codeclimate.com/github/francisco-navarro/climateberry/maintainability)
 
 ### Ejecutar servidor:
 
