@@ -99,5 +99,7 @@ Más información: https://docs.microsoft.com/es-es/azure/iot-hub/iot-hub-node-n
 
 ### AWS IoT
 
-Instalar certificados con install-certs.sh y adjuntar en la ruta certs/ los certificados bajados de la web de aws
+Instalar certificados con install-certs.sh y adjuntar en la ruta certs/ los certificados bajados de la web de aws.
+
 ![Screenshot aws](readme1.png)
+
