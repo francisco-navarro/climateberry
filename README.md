@@ -15,6 +15,11 @@ $ npm start
 
 ### Ejecutar cliente:
 
+Para poder ejecutarlo correctamente con el Hub IoT, hay que configurar las siguientes variables de entorno:
+* IOT_REGISTRY_KEY - Clave con permisos de escritura en el registro, para registar un nuevo dispositivo
+* IOT_DEVICE_KEY - Clave con permiso de conexión de dispositivo. 
+
+Más información: https://docs.microsoft.com/es-es/azure/iot-hub/iot-hub-node-node-getstarted
 
 ```bash
 $ npm start client
