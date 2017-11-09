@@ -13,12 +13,16 @@ Aplicación para controlar la temperatura a través de la Raspberry Pi
 $ npm start
 ```
 
+
 ### Ejecutar cliente:
 
 
 ```bash
 $ npm start client
 ```
+
+Puede haber problemas si no se ejecuta como administrador con los puertos GPIO. Referencia para abrir los puertos GPIO por consola: http://www.raspberry-projects.com/pi/command-line/io-pins-command-line/io-pin-control-from-the-command-line
+
 
 ## API
 

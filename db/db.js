@@ -1,5 +1,5 @@
 const database = {};
 
-console.log('Start mongo....!');
+console.log('Starting mongo not implemented!');
 
 module.exports = database;
