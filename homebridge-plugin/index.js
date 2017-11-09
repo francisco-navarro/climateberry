@@ -18,8 +18,7 @@ mySwitch.prototype = {
   getServices: function () {
     let services = [];
     let informationService = new Service.AccessoryInformation();
-    informationService
-      .setCharacteristic(Characteristic.Manufacturer, "Manufacturer RPi")
+    informationService.setCharacteristic(Characteristic.Manufacturer, "Manufacturer RPi")
       .setCharacteristic(Characteristic.Model, "Climateberry Bridge")
       .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
     // let switchService = new Service.Switch("Climateberry");
