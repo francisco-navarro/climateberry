@@ -19,51 +19,34 @@ mySwitch.prototype = {
     let services = [];
     let informationService = new Service.AccessoryInformation();
     informationService
-    .setCharacteristic(Characteristic.Manufacturer, "Manufacturer RPi")
-    .setCharacteristic(Characteristic.Model, "Climateberry Bridge")
-    .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
-    
+      .setCharacteristic(Characteristic.Manufacturer, "Manufacturer RPi")
+      .setCharacteristic(Characteristic.Model, "Climateberry Bridge")
+      .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
     // let switchService = new Service.Switch("Climateberry");
-    // switchService
-    //   .getCharacteristic(Characteristic.On)
-    //   .on('get', this.getSwitchOnCharacteristic.bind(this))
-    //   .on('set', this.setSwitchOnCharacteristic.bind(this));
+    // switchService.getCharacteristic(Characteristic.On).on('get', this.getSwitchOnCharacteristic.bind(this)).on('set', this.setSwitchOnCharacteristic.bind(this));
 
     this.temperatureService = new Service.Thermostat(this.name);
-    this.temperatureService
-      .getCharacteristic(Characteristic.CurrentTemperature)
+    this.temperatureService.getCharacteristic(Characteristic.CurrentTemperature)
       .on('get', this.getStateTemperature.bind(this));
 
-    this.temperatureService
-      .getCharacteristic(Characteristic.CurrentTemperature)
+    this.temperatureService.getCharacteristic(Characteristic.CurrentTemperature)
       .setProps({minValue: -50});
     
-    this.temperatureService
-      .getCharacteristic(Characteristic.CurrentTemperature)
+    this.temperatureService.getCharacteristic(Characteristic.CurrentTemperature)
       .setProps({maxValue: 50});
 
-    // this.humidityService = new Service.HumiditySensor(this.name);
-    // this.humidityService
-    //   .getCharacteristic(Characteristic.CurrentRelativeHumidity)
-    //   .on('get', this.getStateHumidity.bind(this));
-    // services.push(this.humidityService);
-
-    this.temperatureService
-      .getCharacteristic(Characteristic.CurrentHeatingCoolingState)
+    this.temperatureService.getCharacteristic(Characteristic.CurrentHeatingCoolingState)
       .on('get', this.getCurrentHeatingCoolingState.bind(this));
   
-    this.temperatureService
-      .getCharacteristic(Characteristic.TargetHeatingCoolingState)
+    this.temperatureService.getCharacteristic(Characteristic.TargetHeatingCoolingState)
       .on('get', this.getCurrentHeatingCoolingState.bind(this))
 			.on('set', this.setTargetHeatingCoolingState.bind(this));
 
-    this.temperatureService
-      .getCharacteristic(Characteristic.TargetTemperature)
+    this.temperatureService.getCharacteristic(Characteristic.TargetTemperature)
       .on('get', this.getTargetTemperature.bind(this))
 			.on('set', this.setTargetTemperature.bind(this));
 
-    this.temperatureService
-      .getCharacteristic(Characteristic.TemperatureDisplayUnits)
+    this.temperatureService.getCharacteristic(Characteristic.TemperatureDisplayUnits)
       .on('get', this.getTemperatureDisplayUnits.bind(this))
 			.on('set', this.setTemperatureDisplayUnits.bind(this));
 
