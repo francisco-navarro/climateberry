@@ -1,5 +1,6 @@
 const io = require('./io.controller');
-const TIMEOUT = 60 * 1000;
+const mqtt = require('./mqtt.controller');
+const TIMEOUT =  60 * 1000;
 const HeatingState = {
   OFF: 0,
   HEAT: 1,
@@ -25,6 +26,7 @@ function update() {
     console.log('apagado');
     io.writeTemp(false);
   }
+  mqtt.update(status);
 }
 
 function getStatus() {

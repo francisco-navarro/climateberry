@@ -1,7 +1,18 @@
 const registry = require('../../mqtt/aws.registry');
 
-let device = registry.newShadow();
+let shadow = registry.newShadow(true);
+const shadowName = 'ClimateBerry';
 
+function update (status) {
+  let clientTokenUpdate;
+  let state = {state: {reported: status}};
 
+  clientTokenUpdate = shadow.update(shadowName, state);
 
-// registry('climateberry-device').then(res => device = res);
+  if (clientTokenUpdate === null) console.warn('update shadow failed, operation still in progress');
+
+}
+
+module.exports = {
+  update
+};

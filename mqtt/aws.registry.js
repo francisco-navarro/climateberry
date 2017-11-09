@@ -8,55 +8,45 @@ const config = {
 };
 
 const thingName = 'ClimateBerry';
-const operationTimeout = 10000;
 
 function newDevice () {
   let device = awsIot.device(config);
   
-  
-  device
-  .on('connect', function() {
+  device.on('connect', function() {
      console.log('connect');
   });
-  device
-  .on('close', function() {
+  device.on('close', function() {
      console.log('close');
   });
-  device
-  .on('reconnect', function() {
+  device.on('reconnect', function() {
      console.log('reconnect');
   });
-  device
-  .on('offline', function() {
+  device.on('offline', function() {
      console.log('offline');
   });
-  device
-  .on('error', function(error) {
+  device.on('error', function(error) {
      console.log('error', error);
   });
-  device
-  .on('message', function(topic, payload) {
+  device.on('message', function(topic, payload) {
      console.log('message', topic, payload.toString());
   });
 
   return device;
 }
 
-function newShadow() {
+function newShadow(ignoreDeltas) {
   let shadow = awsIot.thingShadow(config);
   let shadowName = thingName;
-  let temp = 22;
+
   // Client token value returned from thingShadows.update() operation
   let clientTokenUpdate;
 
-
   shadow.on('connect', function() {
     // después de conectar registra en aws iot con el nombre
-    shadow.register(shadowName, {ignoreDeltas: true}, function() {
-      let state = {state: {reported: {temp: temp}}};
-      clientTokenUpdate = shadow.update(shadowName, state);
-
-      if (clientTokenUpdate === null) console.warn('update shadow failed, operation still in progress');
+    shadow.register(shadowName, {ignoreDeltas}, function() {
+    //   let state = {state: {reported: {temp: temp}}};
+    //   clientTokenUpdate = shadow.update(shadowName, state);
+    //   if (clientTokenUpdate === null) console.warn('update shadow failed, operation still in progress');
     });
   });
 
