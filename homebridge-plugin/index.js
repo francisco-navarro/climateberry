@@ -51,7 +51,6 @@ mySwitch.prototype = {
 			.on('set', this.setTemperatureDisplayUnits.bind(this));
 
     services.push(this.temperatureService);
-
     return services;
   },
 
