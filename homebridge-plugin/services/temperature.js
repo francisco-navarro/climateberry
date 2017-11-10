@@ -1,51 +1,31 @@
 const request = require('request');
 
-function getStateTemperature(next) {
+function getFromUrl (next, field) {
   const me = this;
   request({
-      url: me.getUrl,
-      method: 'GET',
-      json: true
-    },
-    function (error, response, body) {
-      if (error) {
-        me.log(error.message);
-        return next(error);
-      }
-      return next(null, body.currentTemp);
-    });
+    url: me.getUrl,
+    method: 'GET',
+    json: true
+  },
+  function (error, response, body) {
+    if (error) {
+      me.log(error.message);
+      return next(error);
+    }
+    return next(null, body[field]);
+  });
+}
+
+function getStateTemperature(next) {
+  getFromUrl.call(this, next, 'currentTemp');
 }
 
 function getStateHumidity(next) {
-  const me = this;
-  request({
-      url: me.getUrl,
-      method: 'GET',
-      json: true
-    },
-    function (error, response, body) {
-      if (error) {
-        me.log(error.message);
-        return next(error);
-      }
-      return next(null, body.currentHumidity);
-    });
+  getFromUrl.call(this, next, 'currentHumidity');
 }
 
 function getTargetTemperature(next) {
-  const me = this;
-  request({
-      url: me.getUrl,
-      method: 'GET',
-      json: true
-    },
-    function (error, response, body) {
-      if (error) {
-        me.log(error.message);
-        return next(error);
-      }
-      return next(null, body.targetTemperature);
-    });
+  getFromUrl.call(this, next, 'targetTemperature');
 }
 
 function setTargetTemperature(temp, next) {
