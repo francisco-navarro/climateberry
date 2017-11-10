@@ -12,7 +12,6 @@ function myDevice(log, config) {
   this.getUrl = url.parse(config['getUrl']);
   this.postUrl = url.parse(config['postUrl']);
   this.name = config['name'];
-  this.Characteristic = Characteristic;
 }
 
 myDevice.prototype = {
@@ -22,7 +21,9 @@ myDevice.prototype = {
     // informationService.setCharacteristic(Characteristic.Manufacturer, "Manufacturer RPi")
     //   .setCharacteristic(Characteristic.Model, "Climateberry Bridge")
     //   .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
-
+    this.CurrentHeatingCoolingState = Characteristic.CurrentHeatingCoolingState;
+    this.TargetHeatingCoolingState = Characteristic.TargetHeatingCoolingState;
+    this.units = Characteristic.TemperatureDisplayUnits.CELSIUS;
     this.temperatureService = new Service.Thermostat(this.name);
     this.temperatureService.getCharacteristic(Characteristic.CurrentTemperature)
       .on('get', temperature.getStateTemperature.bind(this));
