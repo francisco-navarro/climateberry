@@ -73,12 +73,12 @@ function getCurrentHeatingCoolingState(next) {
       }
       if (response.body.heatingState) {
         // Si está encendido
-        this.state = this.CurrentHeatingCoolingState.HEAT;
-        this.targetHeatingCoolingState = this.TargetHeatingCoolingState.HEAT;
+        me.state = me.CurrentHeatingCoolingState.HEAT;
+        me.targetHeatingCoolingState = me.TargetHeatingCoolingState.HEAT;
       } else {
         // Si está apagado:
-        this.state = this.CurrentHeatingCoolingState.OFF;
-        this.targetHeatingCoolingState = this.TargetHeatingCoolingState.OFF;
+        me.state = me.CurrentHeatingCoolingState.OFF;
+        me.targetHeatingCoolingState = me.TargetHeatingCoolingState.OFF;
       }
       return next(null, body.mode);
     });
