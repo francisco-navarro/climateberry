@@ -7,14 +7,14 @@ let Characteristic;
 // config url in ~/.homebridge/config.json
 // Reference types https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/gen/HomeKitTypes.js#L3219
 
-function mySwitch(log, config) {
+function myDevice(log, config) {
   this.log = log;
   this.getUrl = url.parse(config['getUrl']);
   this.postUrl = url.parse(config['postUrl']);
   this.name = config['name'];
 }
 
-mySwitch.prototype = {
+myDevice.prototype = {
   getServices: function () {
     let services = [];
     let informationService = new Service.AccessoryInformation();
@@ -50,6 +50,7 @@ mySwitch.prototype = {
 			.on('set', this.setTemperatureDisplayUnits.bind(this));
 
     services.push(this.temperatureService);
+    services.push(this.informationService);
     return services;
   },
 
@@ -212,5 +213,5 @@ mySwitch.prototype = {
 module.exports = function (homebridge) {
  Service = homebridge.hap.Service;
  Characteristic = homebridge.hap.Characteristic;
- homebridge.registerAccessory("homebridge-climateberry-plugin", "Climateberry", mySwitch);
+ homebridge.registerAccessory("homebridge-climateberry-plugin", "Climateberry", myDevice);
 };
