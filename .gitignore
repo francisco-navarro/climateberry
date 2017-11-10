@@ -60,3 +60,4 @@ typings/
 # certs 
 *.pem
 *.key
+*.crt

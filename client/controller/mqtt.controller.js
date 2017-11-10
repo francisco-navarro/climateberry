@@ -10,7 +10,6 @@ function update (status) {
   clientTokenUpdate = shadow.update(shadowName, state);
 
   if (clientTokenUpdate === null) console.warn('update shadow failed, operation still in progress');
-
 }
 
 module.exports = {
