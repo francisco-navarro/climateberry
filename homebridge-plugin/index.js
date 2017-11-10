@@ -21,8 +21,6 @@ myDevice.prototype = {
     informationService.setCharacteristic(Characteristic.Manufacturer, "Manufacturer RPi")
       .setCharacteristic(Characteristic.Model, "Climateberry Bridge")
       .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
-    let switchService = new Service.Switch("Climateberry");
-    switchService.getCharacteristic(Characteristic.On).on('get', this.getSwitchOnCharacteristic.bind(this)).on('set', this.setSwitchOnCharacteristic.bind(this));
 
     this.temperatureService = new Service.Thermostat(this.name);
     this.temperatureService.getCharacteristic(Characteristic.CurrentTemperature)
