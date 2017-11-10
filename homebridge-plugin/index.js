@@ -18,9 +18,9 @@ myDevice.prototype = {
   getServices: function () {
     let services = [];
     let informationService = new Service.AccessoryInformation();
-    informationService.setCharacteristic(Characteristic.Manufacturer, "Manufacturer RPi")
-      .setCharacteristic(Characteristic.Model, "Climateberry Bridge")
-      .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
+    // informationService.setCharacteristic(Characteristic.Manufacturer, "Manufacturer RPi")
+    //   .setCharacteristic(Characteristic.Model, "Climateberry Bridge")
+    //   .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
 
     this.temperatureService = new Service.Thermostat(this.name);
     this.temperatureService.getCharacteristic(Characteristic.CurrentTemperature)
@@ -48,7 +48,7 @@ myDevice.prototype = {
 			.on('set', temperature.setTemperatureDisplayUnits.bind(this));
 
     services.push(this.temperatureService);
-    services.push(this.informationService);
+    // services.push(this.informationService);
     return services;
   }
 };
