@@ -51,11 +51,11 @@ function setTargetTemperature(temp, next) {
 }
 
 function getTemperatureDisplayUnits(next) {
-  next(null, Characteristic.TemperatureDisplayUnits.CELSIUS);
+  next(null, this.Characteristic.TemperatureDisplayUnits.CELSIUS);
 }
 
 function setTemperatureDisplayUnits(next) {
-  next(null, Characteristic.TemperatureDisplayUnits.CELSIUS);
+  next(null, this.Characteristic.TemperatureDisplayUnits.CELSIUS);
 }
 
 function getCurrentHeatingCoolingState(next) {
@@ -73,12 +73,12 @@ function getCurrentHeatingCoolingState(next) {
       }
       if (response.body.heatingState) {
         // Si está encendido
-        this.state = Characteristic.CurrentHeatingCoolingState.HEAT;
-        this.targetHeatingCoolingState = Characteristic.TargetHeatingCoolingState.HEAT;
+        this.state = this.Characteristic.CurrentHeatingCoolingState.HEAT;
+        this.targetHeatingCoolingState = this.Characteristic.TargetHeatingCoolingState.HEAT;
       } else {
         // Si está apagado:
-        this.state = Characteristic.CurrentHeatingCoolingState.OFF;
-        this.targetHeatingCoolingState = Characteristic.TargetHeatingCoolingState.OFF;
+        this.state = this.Characteristic.CurrentHeatingCoolingState.OFF;
+        this.targetHeatingCoolingState = this.Characteristic.TargetHeatingCoolingState.OFF;
       }
       return next(null, body.mode);
     });

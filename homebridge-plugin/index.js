@@ -12,12 +12,13 @@ function myDevice(log, config) {
   this.getUrl = url.parse(config['getUrl']);
   this.postUrl = url.parse(config['postUrl']);
   this.name = config['name'];
+  this.Characteristic = Characteristic;
 }
 
 myDevice.prototype = {
   getServices: function () {
     let services = [];
-    let informationService = new Service.AccessoryInformation();
+    // let informationService = new Service.AccessoryInformation();
     // informationService.setCharacteristic(Characteristic.Manufacturer, "Manufacturer RPi")
     //   .setCharacteristic(Characteristic.Model, "Climateberry Bridge")
     //   .setCharacteristic(Characteristic.SerialNumber, "123-456-789");
