@@ -6,6 +6,11 @@ Aplicación para controlar la temperatura a través de la Raspberry Pi
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/2ef2da957540815fb42a/maintainability)](https://codeclimate.com/github/francisco-navarro/climateberry/maintainability)
 
+### Esquema
+
+![Screenshot](climateberry.png)
+
+
 ### Ejecutar servidor:
 
 
@@ -22,6 +27,7 @@ $ npm start client
 ```
 
 Puede haber problemas si no se ejecuta como administrador con los puertos GPIO. Referencia para abrir los puertos GPIO por consola: http://www.raspberry-projects.com/pi/command-line/io-pins-command-line/io-pin-control-from-the-command-line
+
 
 
 ## API
