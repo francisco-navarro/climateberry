@@ -1,6 +1,6 @@
 const io = require('./io.controller');
 const mqtt = require('./mqtt.controller');
-const TIMEOUT =  60 * 1000;
+const TIMEOUT =  30 * 1000;
 const HeatingState = {
   OFF: 0,
   HEAT: 1,
@@ -46,6 +46,11 @@ function setTarget(hState, temperature) {
   }
   update();
 }
+
+mqtt.on('status', function(thingName, stat, clientToken, stateObject) {
+  console.log('temperature received '+stat+' on '+thingName+': '+
+              JSON.stringify(stateObject));
+});
 
 setInterval(update, TIMEOUT);
 

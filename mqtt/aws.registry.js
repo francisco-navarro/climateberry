@@ -50,22 +50,22 @@ function newShadow(ignoreDeltas) {
     });
   });
 
-  shadow.on('status', 
-    function(thingName, stat, clientToken, stateObject) {
-      console.log('received '+stat+' on '+thingName+': '+
-                  JSON.stringify(stateObject));
-    // These events report the status of update(), get(), and delete() 
-    // calls.  The clientToken value associated with the event will have
-    // the same value which was returned in an earlier call to get(),
-    // update(), or delete().  Use status events to keep track of the
-    // status of shadow operations.
-  });
+  // shadow.on('status', 
+  //   function(thingName, stat, clientToken, stateObject) {
+  //     console.log('received '+stat+' on '+thingName+': '+
+  //                 JSON.stringify(stateObject));
+  //   // These events report the status of update(), get(), and delete() 
+  //   // calls.  The clientToken value associated with the event will have
+  //   // the same value which was returned in an earlier call to get(),
+  //   // update(), or delete().  Use status events to keep track of the
+  //   // status of shadow operations.
+  // });
 
-  shadow.on('delta', 
-    function(thingName, stateObject) {
-      console.log('received delta on '+thingName+': '+
-                  JSON.stringify(stateObject));
-    });
+  // shadow.on('delta', 
+  //   function(thingName, stateObject) {
+  //     console.log('received delta on '+thingName+': '+
+  //                 JSON.stringify(stateObject));
+  //   });
 
   shadow.on('timeout',
     function(thingName, clientToken) {
