@@ -8,7 +8,7 @@ Aplicación para controlar la temperatura a través de la Raspberry Pi
 
 ### Esquema
 
-![Screenshot](climateberry.png)
+![Screenshot](schema.png)
 
 
 ### Ejecutar servidor:
