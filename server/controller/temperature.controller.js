@@ -1,8 +1,8 @@
 const db = require('../../db/db');
 
 let unit ='C';
-let actual = 23.5;
-let desired = 23.5;
+let actual = 19;
+let desired = 19;
 let outside = 12;
 
 function get() {
