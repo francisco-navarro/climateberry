@@ -113,3 +113,6 @@ Instalar certificados con install-certs.sh y adjuntar en la ruta certs/ los cert
 
 ![Screenshot aws](readme1.png)
 
+### Pending
+
+Integracion https://dialogflow.com
