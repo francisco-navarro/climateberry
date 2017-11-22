@@ -1,6 +1,7 @@
 var PythonShell = require('python-shell');
-var script = '\/root\/Adafruit_Python_DHT\/examples\/temperature.py';
-var pyshell = new PythonShell(script);
+var pyshell = new PythonShell('temperature.py', {
+  scriptPath: '/root/Adafruit_Python_DHT/examples/'
+});
 
 pyshell.on('message', function (message) {
   // received a message sent from the Python script (a simple "print" statement)
