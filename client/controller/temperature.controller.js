@@ -1,5 +1,6 @@
 const io = require('./io.controller');
 const mqtt = require('./mqtt.controller');
+const sensor = require('./sensor.controller');
 const TIMEOUT =  30 * 1000;
 const HeatingState = {
   OFF: 0,
@@ -15,6 +16,7 @@ const status = {
 };
 
 function update() {
+  sensor.temp((actual) => status.temperature);
   status.hState = 0 + status.hState;
   if (status.hState > 0) {
     if (status.target + threshold > status.temperature) {
