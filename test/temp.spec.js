@@ -4,12 +4,13 @@ var pyshell = new PythonShell('temperature.py', {
 });
 
 pyshell.on('message', function (message) {
-  // received a message sent from the Python script (a simple "print" statement)
-  console.log(message);
+  var out = message.split(',');
+  var temp = out[0].split('=');
+  console.log(temp);
 });
 
 // end the input stream and allow the process to exit
 pyshell.end(function (err) {
   if (err) throw err;
-  console.log('finished');
+  console.log('Adafruit finished');
 });
