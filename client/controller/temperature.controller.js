@@ -16,7 +16,7 @@ const status = {
 };
 
 function update() {
-  sensor.temp((actual) => status.temperature);
+  sensor.temp((actual) => status.temperature = actual);
   status.hState = 0 + status.hState;
   if (status.hState > 0) {
     if (status.target + threshold > status.temperature) {
