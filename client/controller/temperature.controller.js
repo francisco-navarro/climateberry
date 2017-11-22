@@ -28,7 +28,7 @@ function update() {
     console.log('apagado');
     io.writeTemp(false);
   }
-  mqtt.update(status);
+  // mqtt.update(status);
 }
 
 function getStatus() {
