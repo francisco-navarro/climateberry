@@ -1,9 +1,12 @@
-var sensor = require('node-dht-sensor');
+var PythonShell = require('python-shell');
+var script = '/root/Adafruit_Python_DHT/examples/temperature.py';
 
-sensor.read(22, 23, function(err, temperature, humidity) {
-    if (!err) {
-        console.log('temp: ' + temperature.toFixed(1) + '°C, ' +
-            'humidity: ' + humidity.toFixed(1) + '%'
-        );
-    }
+PythonShell.run(script, function (err) {
+  if (err) throw err;
+  console.log('finished');
+});
+
+pyshell.on('message', function (message) {
+  // received a message sent from the Python script (a simple "print" statement)
+  console.log(message);
 });
