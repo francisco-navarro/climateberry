@@ -1,5 +1,5 @@
 var PythonShell = require('python-shell');
-var script = '/root/Adafruit_Python_DHT/examples/temperature.py';
+var script = '\/root\/Adafruit_Python_DHT\/examples\/temperature.py';
 var pyshell = new PythonShell(script);
 
 pyshell.on('message', function (message) {
