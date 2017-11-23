@@ -1,8 +1,8 @@
 function temp(callback) {
   try{
     var PythonShell = require('python-shell');
-    var pyshell = new PythonShell('temperature.py', {
-      scriptPath: '/root/Adafruit_Python_DHT/examples/'
+    var pyshell = new PythonShell('readtemperature.py', {
+      // scriptPath: '/root/Adafruit_Python_DHT/examples/'
     });
     
     pyshell.on('message', function (message) {
