@@ -6,6 +6,7 @@ function temp(callback) {
     });
     
     pyshell.on('message', function (message) {
+      console.log(message);
       var out = message.split(' ');
       var temp = out[0].split('=');
       console.log(message);
