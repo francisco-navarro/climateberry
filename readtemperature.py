@@ -18,7 +18,7 @@ import Adafruit_DHT
 
 # Try to grab a sensor reading.  Use the read_retry method which will retry up
 # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
-humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 18)
+humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 23)
 
 # Un-comment the line below to convert the temperature to Fahrenheit.
 # temperature = temperature * 9/5.0 + 32
