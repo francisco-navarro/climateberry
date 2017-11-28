@@ -44,43 +44,27 @@ function newShadow(ignoreDeltas) {
   shadow.on('connect', function() {
     // después de conectar registra en aws iot con el nombre
     shadow.register(shadowName, {ignoreDeltas}, function() {
-    //   let state = {state: {reported: {temp: temp}}};
-    //   clientTokenUpdate = shadow.update(shadowName, state);
-    //   if (clientTokenUpdate === null) console.warn('update shadow failed, operation still in progress');
+      let state = {state: {reported: {temp: temp}}};
+      clientTokenUpdate = shadow.update(shadowName, state);
+      if (clientTokenUpdate === null) console.warn('update shadow failed, operation still in progress');
     });
   });
 
-  // shadow.on('status', 
-  //   function(thingName, stat, clientToken, stateObject) {
-  //     console.log('received '+stat+' on '+thingName+': '+
-  //                 JSON.stringify(stateObject));
-  //   // These events report the status of update(), get(), and delete() 
-  //   // calls.  The clientToken value associated with the event will have
-  //   // the same value which was returned in an earlier call to get(),
-  //   // update(), or delete().  Use status events to keep track of the
-  //   // status of shadow operations.
-  // });
+  shadow.on('status', 
+    function(thingName, stat, clientToken, stateObject) {
+      console.log('received '+stat+' on '+thingName+': '+
+                  JSON.stringify(stateObject));
+    //  report the status of update(), get(), and delete() 
+  });
 
-  // shadow.on('delta', 
-  //   function(thingName, stateObject) {
-  //     console.log('received delta on '+thingName+': '+
-  //                 JSON.stringify(stateObject));
-  //   });
-
-  shadow.on('timeout',
-    function(thingName, clientToken) {
-      console.log('received timeout on '+thingName+
-                  ' with token: '+ clientToken);
-
-    // In the event that a shadow operation times out, you'll receive
-    // one of these events.  The clientToken value associated with the
-    // event will have the same value which was returned in an earlier
-    // call to get(), update(), or delete().
+  shadow.on('delta', 
+    function(thingName, stateObject) {
+      console.log('received delta on '+thingName+': '+
+                  JSON.stringify(stateObject));
     });
 
   return shadow;
 }
-
 //Api shadow para publicar topics
 //https://agfpnddpzypi9.iot.eu-west-2.amazonaws.com/things/thingName/shadow
 
