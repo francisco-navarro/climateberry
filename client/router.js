@@ -1,7 +1,7 @@
-function init() {
-  const router = require('express').Router();
-  const temperateController = require('./controller/temperature.controller');
+const router = require('express').Router();
+const temperateController = require('./controller/temperature.controller');
 
+module.exports = function init() {
   router.get('/status', (req, res) => {
     res.json(temperateController.getStatus()).status(200);
   });
@@ -9,12 +9,10 @@ function init() {
   router.post('/order', (req, res) => {
     temperateController.setTarget(
       req.body.heatingState,
-      req.body.targetTemperature
+      req.body.targetTemperature,
     );
     res.json(temperateController.getStatus()).status(200);
   });
 
   return router;
-}
-
-module.exports = init();
+};
