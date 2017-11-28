@@ -1,10 +1,12 @@
 const config = require('../../config');
+const fs = require("fs");
+
 let gpio;
 
 function init() {
   console.warn('Execute with sudo for access to gpio');
 
-  try{
+  try {
     gpio = require('pi-gpio');
     
     gpio.open(config.temperatureGpio, "output", () => {

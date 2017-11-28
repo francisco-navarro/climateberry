@@ -1,9 +1,10 @@
-const db = require('../../db/db');
 
 let unit ='C';
 let actual = 19;
 let desired = 19;
 let outside = 12;
+
+// TODO : Este controlador actualmente esta obsoleto hasta que se añada mqtt
 
 function get() {
   return {

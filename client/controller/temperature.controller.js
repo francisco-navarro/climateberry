@@ -1,5 +1,5 @@
 const io = require('./io.controller');
-//const mqtt = require('./mqtt.controller');
+const mqtt = require('./mqtt.controller');
 const sensor = require('./sensor.controller');
 const TIMEOUT =  30 * 1000;
 const HeatingState = {
@@ -8,7 +8,7 @@ const HeatingState = {
   COLD: 2,
   AUTO: 3
 };
-const threshold = 0;
+const threshold = 0.5;
 const status = {
   temperature: 21.5,
   target: 22,
@@ -28,7 +28,7 @@ function update() {
     console.log('apagado');
     io.writeTemp(false);
   }
-  // mqtt.update(status);
+  mqtt.update(status);
 }
 
 function getStatus() {
@@ -49,10 +49,10 @@ function setTarget(hState, temperature) {
   update();
 }
 
-// mqtt.on('status', function(thingName, stat, clientToken, stateObject) {
-//   console.log('temperature received '+stat+' on '+thingName+': '+
-//               JSON.stringify(stateObject));
-// });
+mqtt.on('status', function(thingName, stat, clientToken, stateObject) {
+  console.log('temperature received '+stat+' on '+thingName+': '+
+              JSON.stringify(stateObject));
+});
 
 setInterval(update, TIMEOUT);
 
