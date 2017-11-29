@@ -17,7 +17,9 @@ const status = {
 };
 
 function update() {
-  sensor.temp(actual => status.temperature = actual);
+  sensor.temp((actual) => {
+    status.temperature = actual;
+  });
   status.hState = 0 + status.hState;
   if (status.hState > 0) {
     if (status.target + threshold > status.temperature) {
@@ -51,7 +53,7 @@ function setTarget(hState, temperature) {
 }
 
 mqtt.on('status', (thingName, stat, clientToken, stateObject) => {
-  console.log('temperature received '+stat+' on '+thingName+': '+
+  console.log('temperature received '+stat+' on '+thingName + ': ' +
               JSON.stringify(stateObject));
 });
 
