@@ -5,8 +5,9 @@
 GET /api/status
 ``` javascript
 {
-  "currentTemp":"20.0","targetTemperature":17,
-  "heatingState":0
+  "currentTemp": "200",
+  "targetTemperature": 17,
+  "heatingState": 0
 }
 ```
 
@@ -25,9 +26,3 @@ POST /api/order
   "targetTemperature": 22,
 }
 ```
-
-Los posibles valores de heating state son:
-*  OFF: 0
-*  HEAT: 1
-*  COLD: 2
-*  AUTO: 3

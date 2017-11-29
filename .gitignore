@@ -63,3 +63,5 @@ typings/
 *.crt
 
 .DS_Store
+
+coverage
