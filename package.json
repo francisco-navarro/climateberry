@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js server",
-    "test-old": "istanbul cover --include-all-sources jasmine-node test/**/*.spec.js"
+    "test": "istanbul cover --include-all-sources jasmine test/**/*.spec.js"
   },
   "repository": {
     "type": "git",
