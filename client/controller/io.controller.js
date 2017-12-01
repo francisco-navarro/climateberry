@@ -1,48 +1,49 @@
 const config = require('../../config');
-const fs = require("fs");
+const fs = require('fs');
 
-let gpio;
+const PATH = config.gpio.path;
 
-function init() {
-  console.warn('Execute with sudo for access to gpio');
 
-  try {
-    gpio = require('pi-gpio');
-    
-    gpio.open(config.temperatureGpio, "output", () => {
-      writeTemp(false);
-      console.log('Configured GPIO ' + config.temperatureGpio)
+function setDirection(pin, direction) {
+  return new Promise((resolve, reject) => {
+    console.log('set direction %s on pin %d', direction.toUpperCase(), pin);
+    fs.writeFile(`${PATH}/gpio${pin}/direction`, direction, (err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve();
     });
-  } catch (ex) {
-    console.warn('Cannot init GPIO...');
-    gpio = {
-      write: writeMock
-    };
-  }
-}
-
-function closePins() {
-  try {
-    gpio.close(config.temperatureGpio);
-  } catch(ex) {
-    console.error(ex);
-  }
-}
-
-function writeTemp (value) {
-  console.log('> gpio.write');
-  gpio.write(config.temperatureGpio, value ? 1 : 0, function(err) {
-    if (err) throw err;
-    console.log('Written ' + value + ' to pin ' + config.temperatureGpio);
   });
 }
 
-function writeMock(port, value, calb) {
-  console.info('GPIO OUTPUT ' + port + ' ' + value);
-  calb();
+function exportPin(pin, direction) {
+  return new Promise((resolve, reject) => {
+    console.log('export pin %d', pin);
+    fs.writeFile(`${PATH}/export`, pin, (err) => {
+      if (err) {
+        reject(err);
+      }
+      return setDirection(pin, direction);
+    });
+  });
+}
+
+function write(pin, value) {
+  console.log(`\t> gpio.write ${pin} ${value}`);
+  fs.writeFile(`${PATH}/gpio${pin}/value`, value);
+}
+
+function init() {
+  console.warn('Execute with sudo for access to gpio');
+  exportPin(config.gpio.relayPin, 'out');
+  exportPin(config.gpio.temperaturePin, 'in');
+}
+
+function writeTemp(value) {
+  write(config.temperatureGpio, value ? 1 : 0);
 }
 
 module.exports = {
   init,
-  writeTemp
+  writeTemp,
 };

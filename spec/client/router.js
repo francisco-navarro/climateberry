@@ -14,11 +14,13 @@ describe('client tests for api in raspberry', () => {
     // Arrange
     console.log('should get the state');
     // Act
+    router.get();
     // Assert
   });
   it('should order new state', () => {
     // Arrange
     // Act
+    router.post();
     // Assert
   });
 });

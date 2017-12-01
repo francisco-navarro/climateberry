@@ -1,3 +1,7 @@
 module.exports = {
-  temperatureGpio: 12 // Está mapeada al 18
+  gpio: {
+    path: '/sys/class/gpio',
+    temperaturePin: 23,
+    relayPin: 19,
+  },
 };

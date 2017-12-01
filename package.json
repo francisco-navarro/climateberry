@@ -26,9 +26,7 @@
     "istanbul": "^0.4.5",
     "jasmine": "^2.8.0",
     "mqtt": "^2.14.0",
-    "pi-gpio": "0.0.8",
-    "python-shell": "^0.4.0",
-    "rpi-gpio": "^0.9.1"
+    "python-shell": "^0.4.0"
   },
   "devDependencies": {
     "eslint": "^4.12.0",

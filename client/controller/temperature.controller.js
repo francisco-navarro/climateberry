@@ -16,14 +16,14 @@ const status = {
   hState: HeatingState.OFF,
 };
 
-function init () {
+function init() {
   io = require('./io.controller');
   mqtt = require('./mqtt.controller');
   sensor = require('./sensor.controller');
 
   mqtt.on('status', (thingName, stat, clientToken, stateObject) => {
-    console.log('temperature received '+stat+' on '+thingName + ': ' +
-                JSON.stringify(stateObject));
+    console.log(`temperature received ${stat} on ${thingName}:
+      ${JSON.stringify(stateObject)}`);
   });
 }
 
