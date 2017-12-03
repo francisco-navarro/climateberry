@@ -6,7 +6,7 @@ const fs = require('fs');
 describe('client tests for api in raspberry', () => {
   beforeEach(() => {
     config.path = os.tmpdir() + config.path;
-    
+  
     ioController.init();
   });
 
