@@ -6,6 +6,7 @@ module.exports = {
     },
     "plugins": [ "jasmine" ],
     "env": {
-        "jasmine": true
+        "jasmine": true,
+        "node": true
     }
 };

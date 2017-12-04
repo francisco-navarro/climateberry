@@ -6,9 +6,8 @@ const fs = require('fs');
 describe('client tests for api in raspberry', () => {
   config.path = createFakeDirs(config.path);
 
-  beforeEach(() => {
-    ioController.init();
-  });
+  beforeEach(done =>
+    ioController.init().then(done));
 
   it('should init without permissions', () => {
     // Arrange

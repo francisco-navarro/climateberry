@@ -34,8 +34,10 @@ function write(pin, value) {
 
 function init() {
   console.warn('Execute with sudo for access to gpio');
-  exportPin(config.relayPin, 'out');
-  exportPin(config.temperaturePin, 'in');
+  return Promise.all([
+    exportPin(config.relayPin, 'out'),
+    exportPin(config.temperaturePin, 'in'),
+  ]);
 }
 
 function writeTemp(value) {
