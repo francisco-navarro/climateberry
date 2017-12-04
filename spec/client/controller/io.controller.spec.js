@@ -4,7 +4,7 @@ const os = require('os');
 const fs = require('fs');
 
 describe('client tests for api in raspberry', () => {
-  config.path = os.tmpdir() + config.path;
+  config.path = createFakeDirs(config.path);
 
   beforeEach(() => {
     ioController.init();
@@ -17,21 +17,23 @@ describe('client tests for api in raspberry', () => {
 
     // Assert
 
+    // echo 18 > /sys/class/gpio/export
+    // echo 23 > /sys/class/gpio/export
+
     // echo out > /sys/class/gpio/gpio18/direction
     fs.statSync(`${config.path}/gpio${config.relayPin}/direction`);
 
-    // echo 18 > /sys/class/gpio/export
-    // echo 23 > /sys/class/gpio/export
     // echo in > /sys/class/gpio/gpio23/direction
+    fs.statSync(`${config.path}/gpio${config.relayPin}/direction`);
   });
-  it('should write true to temperature', () => {
+  xit('should write true to temperature', () => {
     // Arrange
     console.log('should get the state');
     // Act
     ioController.writeTemp();
     // Assert
   });
-  it('should write false to temperature', () => {
+  xit('should write false to temperature', () => {
     // Arrange
     console.log('should get the state');
     // Act
@@ -39,3 +41,22 @@ describe('client tests for api in raspberry', () => {
     // Assert
   });
 });
+
+function createFakeDirs(path) {
+  const fullpath = path.split('/').reduce((prev, folder) => {
+    const nextPath = `${prev}/${folder}`;
+    if (!fs.existsSync(nextPath)) {
+      fs.mkdirSync(`${prev}/${folder}`);
+    }
+    return nextPath;
+  }, os.tmpdir());
+  fs.writeFileSync(`${fullpath}export`, '');
+
+  if (!fs.existsSync(`${fullpath}/gpio18`)) {
+    fs.mkdirSync(`${fullpath}/gpio18`);
+  }
+  if (!fs.existsSync(`${fullpath}/gpio23`)) {
+    fs.mkdirSync(`${fullpath}/gpio23`);
+  }
+  return fullpath;
+}
