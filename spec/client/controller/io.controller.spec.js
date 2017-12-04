@@ -4,9 +4,9 @@ const os = require('os');
 const fs = require('fs');
 
 describe('client tests for api in raspberry', () => {
+  config.path = os.tmpdir() + config.path;
+
   beforeEach(() => {
-    config.path = os.tmpdir() + config.path;
-  
     ioController.init();
   });
 
@@ -18,7 +18,7 @@ describe('client tests for api in raspberry', () => {
     // Assert
 
     // echo out > /sys/class/gpio/gpio18/direction
-    fs.stat(`${path}/gpio${config.relayPin}/direction`);
+    fs.statSync(`${config.path}/gpio${config.relayPin}/direction`);
 
     // echo 18 > /sys/class/gpio/export
     // echo 23 > /sys/class/gpio/export

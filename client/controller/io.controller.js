@@ -1,17 +1,15 @@
-const config = require('../../config');
+const config = require('../../config').gpio;
 const fs = require('fs');
-
-const PATH = config.gpio.path;
-
 
 function setDirection(pin, direction) {
   return new Promise((resolve, reject) => {
     console.log('set direction %s on pin %d', direction.toUpperCase(), pin);
-    fs.writeFile(`${PATH}/gpio${pin}/direction`, direction, (err) => {
+    fs.writeFile(`${config.path}/gpio${pin}/direction`, direction, (err) => {
       if (err) {
         reject(err);
+      } else {
+        resolve();
       }
-      resolve();
     });
   });
 }
@@ -19,18 +17,19 @@ function setDirection(pin, direction) {
 function exportPin(pin, direction) {
   return new Promise((resolve, reject) => {
     console.log('export pin %d', pin);
-    fs.writeFile(`${PATH}/export`, pin, (err) => {
+    fs.writeFile(`${config.path}/export`, pin, (err) => {
       if (err) {
         reject(err);
+      } else {
+        return setDirection(pin, direction).then(resolve);
       }
-      return setDirection(pin, direction);
     });
   });
 }
 
 function write(pin, value) {
   console.log(`\t> gpio.write ${pin} ${value}`);
-  fs.writeFile(`${PATH}/gpio${pin}/value`, value);
+  fs.writeFile(`${config.path}/gpio${pin}/value`, value);
 }
 
 function init() {
