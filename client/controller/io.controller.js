@@ -3,7 +3,6 @@ const fs = require('fs');
 
 function setDirection(pin, direction) {
   return new Promise((resolve, reject) => {
-    console.log('set direction %s on pin %d', direction.toUpperCase(), pin);
     fs.writeFile(`${config.path}/gpio${pin}/direction`, direction, (err) => {
       if (err) {
         reject(err);
@@ -16,7 +15,6 @@ function setDirection(pin, direction) {
 
 function exportPin(pin, direction) {
   return new Promise((resolve, reject) => {
-    console.log('export pin %d', pin);
     fs.writeFile(`${config.path}/export`, pin, (err) => {
       if (err) {
         reject(err);
@@ -28,8 +26,16 @@ function exportPin(pin, direction) {
 }
 
 function write(pin, value) {
-  console.log(`\t> gpio.write ${pin} ${value}`);
-  fs.writeFile(`${config.path}/gpio${pin}/value`, value);
+  return new Promise((resolve, reject) => {
+    console.log(`\t gpio.write ${pin} ${value}`);
+    fs.writeFile(`${config.path}/gpio${pin}/value`, value, (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
 }
 
 function init() {
@@ -41,7 +47,7 @@ function init() {
 }
 
 function writeTemp(value) {
-  write(config.temperatureGpio, value ? 1 : 0);
+  return write(config.relayPin, value ? 1 : 0);
 }
 
 module.exports = {

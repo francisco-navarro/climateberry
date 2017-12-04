@@ -4,6 +4,9 @@ const os = require('os');
 const fs = require('fs');
 
 describe('client tests for api in raspberry', () => {
+  let actual;
+  let expected;
+
   config.path = createFakeDirs(config.path);
 
   beforeEach(done =>
@@ -15,29 +18,35 @@ describe('client tests for api in raspberry', () => {
     // Act
 
     // Assert
-
-    // echo 18 > /sys/class/gpio/export
-    // echo 23 > /sys/class/gpio/export
-
     // echo out > /sys/class/gpio/gpio18/direction
-    fs.statSync(`${config.path}/gpio${config.relayPin}/direction`);
+    actual = fs.readFileSync(`${config.path}/gpio${config.relayPin}/direction`, 'utf-8');
+    expected = 'out';
+    expect(actual).toBe(expected);
 
     // echo in > /sys/class/gpio/gpio23/direction
-    fs.statSync(`${config.path}/gpio${config.relayPin}/direction`);
+    actual = fs.readFileSync(`${config.path}/gpio${config.temperaturePin}/direction`, 'utf-8');
+    expected = 'in';
+    expect(actual).toBe(expected);
   });
-  xit('should write true to temperature', () => {
-    // Arrange
-    console.log('should get the state');
+  it('should write true to temperature', (done) => {
     // Act
-    ioController.writeTemp();
-    // Assert
+    ioController.writeTemp(true).then(() => {
+      // Assert
+      actual = fs.readFileSync(`${config.path}/gpio${config.relayPin}/value`, 'utf-8');
+      expected = '1';
+      expect(actual).toBe(expected);
+      done();
+    });
   });
-  xit('should write false to temperature', () => {
-    // Arrange
-    console.log('should get the state');
+  it('should write false to temperature', (done) => {
     // Act
-    ioController.writeTemp();
-    // Assert
+    ioController.writeTemp(false).then(() => {
+      // Assert
+      actual = fs.readFileSync(`${config.path}/gpio${config.relayPin}/value`, 'utf-8');
+      expected = '0';
+      expect(actual).toBe(expected);
+      done();
+    });
   });
 });
 
