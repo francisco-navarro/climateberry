@@ -21,9 +21,14 @@ function init() {
   mqtt = require('./mqtt.controller');
   sensor = require('./sensor.controller');
 
-  mqtt.on('status', (thingName, stat, clientToken, stateObject) => {
-    console.log(`temperature received ${stat} on ${thingName}:
-      ${JSON.stringify(stateObject)}`);
+  return Promise.all([
+    io.init(),
+    mqtt.init(),
+  ]).then(() => {
+    mqtt.on('status', (thingName, stat, clientToken, stateObject) => {
+      console.log(`temperature received ${stat} on ${thingName}:
+        ${JSON.stringify(stateObject)}`);
+    });
   });
 }
 

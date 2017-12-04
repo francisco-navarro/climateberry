@@ -3,7 +3,7 @@ const config = require('../../../config').gpio;
 const os = require('os');
 const fs = require('fs');
 
-describe('client tests for api in raspberry', () => {
+describe('Tests input output GPIO in raspberry', () => {
   let actual;
   let expected;
 
