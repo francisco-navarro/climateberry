@@ -4,7 +4,7 @@ Aplicación para controlar la temperatura a través de la Raspberry Pi
 
 [![node](https://img.shields.io/badge/node-6.x-brightgreen.svg)]()
 [![dependencies Status](https://david-dm.org/francisco-navarro/climateberry/status.svg)](https://david-dm.org/francisco-navarro/climateberry)
-[![Maintainability](http://api.codeclimate.com/v1/badges/2ef2da957540815fb42a/maintainability.svg)](http://codeclimate.com/github/francisco-navarro/climateberry/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2ef2da957540815fb42a/maintainability.svg)](https://codeclimate.com/github/francisco-navarro/climateberry/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2ef2da957540815fb42a/test_coverage.svg)](https://codeclimate.com/github/francisco-navarro/climateberry/test_coverage)
 
 ## Esquema
