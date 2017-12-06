@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js server",
-    "test": "istanbul cover jasmine spec/**/io*.spec.js",
+    "test": "istanbul cover jasmine",
+    "jasmine": "jasmine",
     "coverage": "CODECLIMATE_REPO_TOKEN=e69d19a20770257c3981934039c2f6b07bfacdcbe9542f547bf48130211ac1bd codeclimate-test-reporter < coverage/lcov.info"
   },
   "repository": {
