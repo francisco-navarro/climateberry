@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js server",
-    "test": "istanbul cover jasmine spec/**/io*.spec.js",
-    "help": "istanbul help"
+    "test": "istanbul cover jasmine spec/**/io*.spec.js"
   },
   "repository": {
     "type": "git",
