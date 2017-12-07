@@ -1,7 +1,7 @@
-const registry = require('../../mqtt/aws.registry');
-
-const shadow = registry.newShadow(true);
 const shadowName = 'ClimateBerry';
+
+let registry;
+let shadow;
 
 function update(status) {
   let clientTokenUpdate;
@@ -17,6 +17,8 @@ function on() {
 }
 
 function init() {
+  registry = require('../../mqtt/aws.registry');
+  shadow = registry.newShadow(true);
   return Promise.resolve();
 }
 

@@ -33,21 +33,21 @@ function init() {
 }
 
 function update() {
-  sensor.temp((actual) => {
+  return sensor.temp().then((actual) => {
     status.temperature = actual;
-  });
-  status.hState = 0 + status.hState;
-  if (status.hState > 0) {
-    if (status.target + threshold > status.temperature) {
-      io.writeTemp(true);
-    } else if (status.temperature + threshold >= status.target) {
+    status.hState = 0 + status.hState;
+    if (status.hState > 0) {
+      if (status.target + threshold > status.temperature) {
+        io.writeTemp(true);
+      } else if (status.temperature + threshold >= status.target) {
+        io.writeTemp(false);
+      }
+    } else {
+      console.log('apagado');
       io.writeTemp(false);
     }
-  } else {
-    console.log('apagado');
-    io.writeTemp(false);
-  }
-  mqtt.update(status);
+    mqtt.update(status);
+  });
 }
 
 function getStatus() {
@@ -65,7 +65,7 @@ function setTarget(hState, temperature) {
   if (hState !== undefined) {
     status.hState = hState;
   }
-  update();
+  return update();
 }
 
 
