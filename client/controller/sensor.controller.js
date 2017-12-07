@@ -1,8 +1,9 @@
+
 function temp(callback) {
   return new Promise((resolve, reject) => {
     try {
-      var PythonShell = require('python-shell');
-      var pyshell = new PythonShell('readtemperature.py', {
+      const PythonShell = require('python-shell');
+      const pyshell = new PythonShell('readtemperature.py', {
         // scriptPath: '/root/Adafruit_Python_DHT/examples/'
       });
       
