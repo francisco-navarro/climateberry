@@ -30,7 +30,6 @@ describe('Tests temperature control with external info', () => {
     spyOn(mqtt, 'update').and.stub();
 
     temperatureController.setTarget(1, 30).then((value) => {
-      console.log(value);
       actual = temperatureController.getStatus();
       expected = {
         currentTemp: 17,
