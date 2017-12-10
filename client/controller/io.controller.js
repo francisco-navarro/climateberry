@@ -43,8 +43,10 @@ function write(pin, value) {
 function init() {
   console.warn('Execute with sudo for access to gpio');
   return Promise.all([
-    exportPin(config.relayPin, 'out'),
-    exportPin(config.temperaturePin, 'in'),
+    exportPin(config.relayPin, 'out')
+      .catch(err => console.error('Error exporting relay pin', err)),
+    exportPin(config.temperaturePin, 'in')
+      .catch(err => console.error('Error exporting temperature pin', err))
   ]);
 }
 

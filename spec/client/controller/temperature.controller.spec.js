@@ -27,7 +27,7 @@ describe('Tests temperature control with external info', () => {
   it('expect to change the temperature and status', (done) => {
     spyOn(sensor, 'temp').and.returnValue(
       Promise.resolve(17));
-    spyOn(mqtt, 'update').fand.stub();
+    spyOn(mqtt, 'update').and.stub();
 
     temperatureController.setTarget(1, 30).then((value) => {
       actual = temperatureController.getStatus();
