@@ -2,6 +2,7 @@ const config = require('../../config').gpio;
 const fs = require('fs');
 
 function setDirection(pin, direction) {
+  console.log(`${pin} -> ${direction}`);
   return new Promise((resolve, reject) => {
     fs.writeFile(`${config.path}/gpio${pin}/direction`, direction, (err) => {
       if (err) {
@@ -14,6 +15,7 @@ function setDirection(pin, direction) {
 }
 
 function exportPin(pin, direction) {
+  console.log(`Export pin ${pin} ${direction}`);
   return new Promise((resolve, reject) => {
     fs.writeFile(`${config.path}/export`, pin, (err) => {
       if (err) {
