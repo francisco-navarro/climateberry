@@ -21,7 +21,7 @@ function getStateTemperature(next) {
 }
 
 function getStateHumidity(next) {
-  getFromUrl.call(this, next, 'currentHumidity');
+  getFromUrl.call(this, next, 'humidity');
 }
 
 function getTargetTemperature(next) {
