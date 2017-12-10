@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import sys
+import json
 
 import Adafruit_DHT
 
@@ -28,7 +29,13 @@ humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 23)
 # guarantee the timing of calls to read the sensor).
 # If this happens try again!
 if humidity is not None and temperature is not None:
-    print('\{\"temp\":{0:0.1f},  \"humidity\":{1:0.1f}\}'.format(temperature, humidity))
+    #print('temp={0:0.1f}  humidity={1:0.1f}'.format(temperature, humidity))
+    status = {
+        "temp": temperature,
+        "humidity": humidity
+    }
+    statusJSON = json.dumps(status)
+    print(statusJSON)
 else:
-    print('\{\}')
+    print('Failed to get reading. Try again!')
     sys.exit(1)
