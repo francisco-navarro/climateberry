@@ -23,8 +23,6 @@
   "author": "Paco Navarro",
   "license": "Apache Public License v2",
   "dependencies": {
-    "aws-iot-device-sdk": "^2.1.0",
-    "hap-nodejs": "0.4.36",
     "request": "^2.83.0"
   }
 }
