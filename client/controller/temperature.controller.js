@@ -29,7 +29,7 @@ function init() {
       console.log(`temperature received ${stat} on ${thingName}:
         ${JSON.stringify(stateObject)}`);
     });
-  });
+  }).catch(err => console.warn);
 }
 
 function update() {
