@@ -8,10 +8,7 @@ function temp() {
       
       pyshell.on('message', function (message) {
         console.log(message);
-        var out = message.split(' ');
-        var temp = out[0].split('=');
-        console.log(message);
-        resolve(temp[1]);
+        resolve(JSON.parse(message));
       });
       
       // end the input stream and allow the process to exit

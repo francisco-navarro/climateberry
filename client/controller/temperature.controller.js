@@ -12,6 +12,7 @@ const HeatingState = {
 const threshold = 0.5;
 const status = {
   temperature: 21.5,
+  humidity: 50,
   target: 22,
   hState: HeatingState.OFF,
 };
@@ -31,12 +32,13 @@ function init() {
       console.log(`temperature received ${stat} on ${thingName}:
         ${JSON.stringify(stateObject)}`);
     });
-  }).catch(err => console.log('Error starting temperature controller'));
+  }).catch(err => console.log('Error starting temperature controller', err));
 }
 
 function update() {
   return sensor.temp().then((actual) => {
-    status.temperature = parseFloat(actual);
+    status.temperature = actual.temp;
+    status.humidity = actual.humidity;
     status.hState = 0 + status.hState;
     if (status.hState > 0) {
       if (status.target + threshold > status.temperature) {
