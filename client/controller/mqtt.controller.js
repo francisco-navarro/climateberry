@@ -1,7 +1,14 @@
 const shadowName = 'ClimateBerry';
+const enabled = false;
 
 let registry;
 let shadow;
+
+let stub = {
+  update = () => {},
+  on = () => {},
+  init = () => Promise.resolve()
+};
 
 function update(status) {
   let clientTokenUpdate;
@@ -22,8 +29,10 @@ function init() {
   return Promise.resolve();
 }
 
-module.exports = {
-  update,
-  on,
-  init,
-};
+module.exports = enabled
+ ? {
+    update,
+    on,
+    init,
+  } 
+  : stub;
