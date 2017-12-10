@@ -9,7 +9,7 @@ module.exports = function init() {
   router.post('/order', (req, res) => {
     temperateController.setTarget(
       req.body.heatingState,
-      req.body.targetTemperature,
+      req.body.targetTemperature
     );
     res.json(temperateController.getStatus()).status(200);
   });
