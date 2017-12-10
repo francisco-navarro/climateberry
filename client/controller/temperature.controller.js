@@ -36,7 +36,7 @@ function init() {
 
 function update() {
   return sensor.temp().then((actual) => {
-    status.temperature = 0 + actual;
+    status.temperature = parseFloat(actual);
     status.hState = 0 + status.hState;
     if (status.hState > 0) {
       if (status.target + threshold > status.temperature) {
