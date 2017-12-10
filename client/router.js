@@ -3,20 +3,20 @@ module.exports = function init() {
   const temperateController = require('./controller/temperature.controller');
 
   temperateController.init().then(() => {
-
-    router.get('/status', (req, res) => {
-      res.json(temperateController.getStatus()).status(200);
-    });
-  
-    router.post('/order', (req, res) => {
-      temperateController.setTarget(
-        req.body.heatingState,
-        req.body.targetTemperature
-      );
-      res.json(temperateController.getStatus()).status(200);
-    });
-
+    
+    
     console.log('Router started');
+  });
+  router.get('/status', (req, res) => {
+    res.json(temperateController.getStatus()).status(200);
+  });
+
+  router.post('/order', (req, res) => {
+    temperateController.setTarget(
+      req.body.heatingState,
+      req.body.targetTemperature
+    );
+    res.json(temperateController.getStatus()).status(200);
   });
   return router;
 };
