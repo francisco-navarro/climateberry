@@ -1,6 +1,6 @@
 {
   "name": "homebridge-climateberry-plugin",
-  "version": "1.0.26",
+  "version": "1.0.34",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/francisco-navarro/climateberry"

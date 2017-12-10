@@ -5,7 +5,7 @@ function getFromUrl (next, field) {
   request({
     url: me.getUrl,
     method: 'GET',
-    json: true
+    json: true,
   },
   function (error, response, body) {
     if (error) {
@@ -34,12 +34,12 @@ function setTargetTemperature(temp, next) {
   request({
       url: me.postUrl,
       json: {
-        'targetTemperature': temp
+        'targetTemperature': temp,
       },
       method: 'POST',
       headers: {
-        'Content-type': 'application/json'
-      }
+        'Content-type': 'application/json',
+      },
     },
     function (error, response) {
       if (error) {
@@ -64,7 +64,7 @@ function getCurrentHeatingCoolingState(next) {
   request({
       url: me.getUrl,
       method: 'GET',
-      json: true
+      json: true,
     },
     function (error, response, body) {
       if (error) {
@@ -90,12 +90,12 @@ function setTargetHeatingCoolingState(state, next) {
   request({
       url: me.postUrl,
       json: {
-        'heatingState': state
+        'heatingState': state,
       },
       method: 'POST',
       headers: {
-        'Content-type': 'application/json'
-      }
+        'Content-type': 'application/json',
+      },
     },
     function (error, response) {
       if (error) {
@@ -114,6 +114,5 @@ module.exports = {
   getTemperatureDisplayUnits,
   setTemperatureDisplayUnits,
   getCurrentHeatingCoolingState,
-  getCurrentHeatingCoolingState,
-  setTargetHeatingCoolingState
+  setTargetHeatingCoolingState,
 };
