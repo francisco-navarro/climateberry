@@ -59,6 +59,7 @@ function getStatus() {
     currentTemp: status.temperature,
     targetTemperature: status.target,
     heatingState: status.hState,
+    humidity: status.humidity,
   };
 }
 
