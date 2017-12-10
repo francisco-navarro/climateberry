@@ -27,6 +27,30 @@ function exportPin(pin, direction) {
   });
 }
 
+function unexportPin(pin) {
+  return isExported(pin).then(exists => {
+    if (exists) {
+      return new Promise((resolve, reject) => {
+        fs.writeFile(`${config.path}/unexport`, pin, (err) => {
+          if (err) {
+            reject(err);
+          }
+          resolve();
+        });
+      });
+    }
+    return Promise.resolve();
+  });
+}
+
+function isExported(pin) {
+  return new Promise((resolve, reject) => {
+    fs.exists(`${config.path}/gpio/${pin}`, exists => {
+      resolve(exists);
+    });
+  });
+}
+
 function write(pin, value) {
   return new Promise((resolve, reject) => {
     console.log(`\t gpio.writing ${pin} ${value}`);
@@ -40,13 +64,23 @@ function write(pin, value) {
   });
 }
 
+function exportRelay() {
+  return unexportPin(config.relayPin).then(() =>
+    exportPin(config.relayPin, 'out')
+  ).catch(err => console.error);
+}
+
+function exportTemp() {
+  return unexportPin(config.relayPin).then(() =>
+    exportPin(config.temperaturePin, 'in')
+  ).catch(err => console.error);
+}
+
 function init() {
   console.warn('Execute with sudo for access to gpio');
   return Promise.all([
-    exportPin(config.relayPin, 'out')
-      .catch(err => console.error('Error exporting relay pin', err)),
-    exportPin(config.temperaturePin, 'in')
-      .catch(err => console.error('Error exporting temperature pin', err))
+    exportRelay(),
+    exportTemp()
   ]);
 }
 
