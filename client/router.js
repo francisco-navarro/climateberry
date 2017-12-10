@@ -16,6 +16,7 @@ module.exports = function init() {
       res.json(temperateController.getStatus()).status(200);
     });
 
+    console.log('Router started');
   });
   return router;
 };
