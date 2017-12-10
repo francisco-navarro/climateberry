@@ -27,7 +27,7 @@ function exportPin(pin, direction) {
 
 function write(pin, value) {
   return new Promise((resolve, reject) => {
-    console.log(`\t gpio.write ${pin} ${value}`);
+    console.log(`\t gpio.writing ${pin} ${value}`);
     fs.writeFile(`${config.path}/gpio${pin}/value`, value, (err) => {
       if (err) {
         reject(err);

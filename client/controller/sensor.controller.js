@@ -1,5 +1,4 @@
-
-function temp(callback) {
+function temp() {
   return new Promise((resolve, reject) => {
     try {
       const PythonShell = require('python-shell');
