@@ -25,12 +25,12 @@ function init() {
     io.init(),
     mqtt.init(),
   ]).then(() => {
-    console.log('temperature controller initialized');
+    console.log('Temperature controller initialized');
     mqtt.on('status', (thingName, stat, clientToken, stateObject) => {
       console.log(`temperature received ${stat} on ${thingName}:
         ${JSON.stringify(stateObject)}`);
     });
-  });
+  }).catch(err => console.log('Error starting temperature controller'));
 }
 
 function update() {
