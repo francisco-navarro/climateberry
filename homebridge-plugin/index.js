@@ -1,8 +1,10 @@
 const url = require('url');
+const Characteristic = require('hap-nodejs').Characteristic;
+const Service = require('hap-nodejs').Service;
 const temperature = require('./services/temperature');
 
-let Service;
-let Characteristic;
+// let Service;
+//let Characteristic;
 
 // config url in ~/.homebridge/config.json
 // Reference types https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/gen/HomeKitTypes.js#L3219
@@ -56,7 +58,8 @@ myDevice.prototype = {
 };
 
 module.exports = function (homebridge) {
- Service = homebridge.hap.Service;
- Characteristic = homebridge.hap.Characteristic;
+  // Ahora lo recojo de la libreria
+//  Service = homebridge.hap.Service;
+//  Characteristic = homebridge.hap.Characteristic;
  homebridge.registerAccessory("homebridge-climateberry-plugin", "Climateberry", myDevice);
 };

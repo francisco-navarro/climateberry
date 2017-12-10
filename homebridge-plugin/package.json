@@ -1,6 +1,6 @@
 {
   "name": "homebridge-climateberry-plugin",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/francisco-navarro/climateberry"
@@ -23,7 +23,8 @@
   "author": "Paco Navarro",
   "license": "Apache Public License v2",
   "dependencies": {
-    "request": "^2.83.0",
-    "aws-iot-device-sdk": "^2.1.0"
+    "aws-iot-device-sdk": "^2.1.0",
+    "hap-nodejs": "0.4.36",
+    "request": "^2.83.0"
   }
 }
