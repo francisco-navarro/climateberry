@@ -2,7 +2,7 @@ module.exports = function init() {
   const router = require('express').Router();
   const temperateController = require('./controller/temperature.controller');
 
-  temperateController.init().then(() => {
+  temperateController.init().finally(() => {
 
     router.get('/status', (req, res) => {
       res.json(temperateController.getStatus()).status(200);
