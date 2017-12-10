@@ -5,9 +5,9 @@ let registry;
 let shadow;
 
 let stub = {
-  update = function () {},
-  on = function () {},
-  init = () => Promise.resolve()
+  update: () => {},
+  on: () => {},
+  init: () => Promise.resolve()
 };
 
 function update(status) {
