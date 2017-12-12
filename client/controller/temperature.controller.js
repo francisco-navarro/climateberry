@@ -9,7 +9,7 @@ const HeatingState = {
   COLD: 2,
   AUTO: 3,
 };
-const threshold = 0.5;
+const threshold = 0.1;
 const status = {
   temperature: 21.5,
   humidity: 50,
@@ -43,7 +43,7 @@ function update() {
     if (status.hState > 0) {
       if (status.target + threshold > status.temperature) {
         io.writeTemp(true);
-      } else if (status.temperature + threshold >= status.target) {
+      } else {
         io.writeTemp(false);
       }
     } else {
