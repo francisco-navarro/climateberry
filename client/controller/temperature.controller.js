@@ -13,7 +13,7 @@ const threshold = 0.4;
 const status = {
   temperature: 21.5,
   humidity: 50,
-  target: 22,
+  target: 20,
   hState: HeatingState.OFF,
 };
 
