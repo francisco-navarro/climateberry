@@ -41,7 +41,7 @@ function update() {
     status.humidity = actual.humidity;
     status.hState = 0 + status.hState;
     if (status.hState > 0) {
-      if (status.target + threshold > status.temperature) {
+      if (status.target > status.temperature + threshold) {
         io.writeTemp(true);
       } else if (status.temperature < status.target) {
         io.writeTemp(false);
