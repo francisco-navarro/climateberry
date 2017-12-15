@@ -17,6 +17,22 @@ const status = {
   hState: HeatingState.OFF,
 };
 
+
+function thermostatIsOn() {
+  return status.hState > 0;
+}
+
+function isInThreshold() {
+  // No se enciende ni se apaga si el objetivo y el actual son aproximadamente iguales
+  return Math.abs(status.target - status.temperature) <= threshold;
+}
+function isBelowTarget() {
+  return status.temperature < status.target;
+}
+function isOverTarget() {
+  return status.temperature >= status.target();
+}
+
 function init() {
   io = require('./io.controller');
   mqtt = require('./mqtt.controller');
@@ -40,10 +56,12 @@ function update() {
     status.temperature = actual.temp;
     status.humidity = actual.humidity;
     status.hState = 0 + status.hState;
-    if (status.hState > 0) {
-      if (status.target > status.temperature + threshold) {
+    if (thermostatIsOn()) {
+      if (isInThreshold()) {
+        // No hacemos nada
+      } else if (isBelowTarget()) {
         io.writeTemp(true);
-      } else if (status.temperature < status.target) {
+      } else {
         io.writeTemp(false);
       }
     } else {
