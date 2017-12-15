@@ -9,7 +9,7 @@ const HeatingState = {
   COLD: 2,
   AUTO: 3,
 };
-const threshold = 0.4;
+const threshold = 0.3;
 const status = {
   temperature: 21.5,
   humidity: 50,
