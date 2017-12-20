@@ -1,0 +1,49 @@
+<html>
+<head>
+  <script src="lib/chart.js/dist/Chart.js"></script>
+  <script src="lib/moment/moment.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    function getDate() {
+      $.getJSON('http://raspi.local:8080/api/history', function(data) {
+          //data is the JSON string
+          draw(data.reverse())
+      });
+    }
+    function draw(data) {
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.map(el => moment(el.timestamp).format('MMM DD - HH:mm')),
+          datasets: [{
+            label: 'ºC',
+            data: data.map(el => el.temperature),
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                // min: 16,
+                max: 25,
+              }
+            }]
+          }
+        }
+      });
+    }
+  </script>
+</head>
+
+<body onload="getDate()">
+  <h2>Historico temperatura</h2>
+
+  <div style="height:200px;width:600px;">
+    <canvas id="myChart" width="200" height="200"></canvas>
+  </div>
+
+</body>
+
+</html>
