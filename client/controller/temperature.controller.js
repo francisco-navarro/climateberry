@@ -1,8 +1,10 @@
+const db = require('../../db/index');
+
 let io;
 let mqtt;
 let sensor;
 
-const TIMEOUT = 30 * 1000;
+const TIMEOUT = 60 * 1000;
 const HeatingState = {
   OFF: 0,
   HEAT: 1,
@@ -29,9 +31,6 @@ function isInThreshold() {
 function isBelowTarget() {
   return status.temperature < status.target;
 }
-function isOverTarget() {
-  return status.temperature >= status.target();
-}
 
 function init() {
   io = require('./io.controller');
@@ -44,6 +43,7 @@ function init() {
   ]).then(() => {
     console.log('Temperature controller initialized');
     setInterval(update, TIMEOUT);
+    setInterval(storeDatabase, TIMEOUT * 60);
     mqtt.on('status', (thingName, stat, clientToken, stateObject) => {
       console.log(`temperature received ${stat} on ${thingName}:
         ${JSON.stringify(stateObject)}`);
@@ -70,6 +70,10 @@ function update() {
     }
     mqtt.update(status);
   });
+}
+
+function storeDatabase() {
+  db.write(status.temperature);
 }
 
 function getStatus() {

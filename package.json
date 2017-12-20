@@ -29,6 +29,7 @@
     "homebridge": "^0.4.33",
     "istanbul": "0.4.5",
     "jasmine": "2.8.0",
+    "mongoose": "^4.13.7",
     "mqtt": "^2.14.0",
     "python-shell": "^0.4.0"
   },
