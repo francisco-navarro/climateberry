@@ -24,8 +24,8 @@ function write(temperature) {
 }
 
 function list() {
-  db.find()
-    .sort({ occupation: -1 });
+  return db.State.find()
+    .sort({ timestamp: -1 });
 }
 
 module.exports = {
