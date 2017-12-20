@@ -19,6 +19,8 @@
           datasets: [{
             label: 'ºC',
             data: data.map(el => el.temperature),
+            borderColor: '#008cff',
+            pointRadius: 1,
             borderWidth: 1
           }]
         },
@@ -27,7 +29,7 @@
             yAxes: [{
               ticks: {
                 // min: 16,
-                max: 25,
+                max: 24,
               }
             }]
           }
@@ -38,7 +40,7 @@
 </head>
 
 <body onload="getDate()">
-  <h2>Historico temperatura</h2>
+  <!-- <h2>Historico temperatura</h2> -->
 
   <div style="height:200px;width:600px;">
     <canvas id="myChart" width="200" height="200"></canvas>
