@@ -23,7 +23,13 @@ function write(temperature) {
   return state.save();
 }
 
+function list() {
+  db.find()
+    .sort({ occupation: -1 });
+}
+
 module.exports = {
   init,
   write,
+  list,
 };

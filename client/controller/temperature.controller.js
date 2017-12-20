@@ -43,7 +43,7 @@ function init() {
   ]).then(() => {
     console.log('Temperature controller initialized');
     setInterval(update, TIMEOUT);
-    setInterval(storeDatabase, TIMEOUT * 60);
+    setInterval(storeDatabase, TIMEOUT * 2);
     mqtt.on('status', (thingName, stat, clientToken, stateObject) => {
       console.log(`temperature received ${stat} on ${thingName}:
         ${JSON.stringify(stateObject)}`);
