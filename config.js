@@ -4,5 +4,5 @@ module.exports = {
     temperaturePin: 23,
     relayPin: 18,
   },
-  connection_string: 'admin:_____@ds061196.mlab.com:61196/climateberry',
+  connection_string: 'admin:_____@ds131312.mlab.com:31312/ticket-line',
 };
