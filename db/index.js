@@ -7,7 +7,7 @@ function init() {
   mongoose.Promise = Promise;
   require('./models/state');
   db = {
-    state: mongoose.model('State'),
+    State: mongoose.model('State'),
   };
 
   mongoose.connect(`mongodb://${config.connection_string}`, {
@@ -15,8 +15,12 @@ function init() {
   });
 }
 
-function write() {
-  console.log(db);
+function write(temperature) {
+  let state = new db.State({
+    temperature,
+    timestamp: new Date(),
+  });
+  return state.save();
 }
 
 module.exports = {
