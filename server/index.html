@@ -18,7 +18,7 @@
           labels: data.map(el => moment(el.timestamp).format('MMM DD - HH:mm')),
           datasets: [{
             label: 'ºC',
-            data: data.map(el => el.temperature),
+            data: data.map(el => el.temperature.toFixed(2)),
             borderColor: '#008cff',
             pointRadius: 1,
             borderWidth: 1

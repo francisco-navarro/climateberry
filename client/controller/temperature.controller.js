@@ -53,8 +53,8 @@ function init() {
 
 function update() {
   return sensor.temp().then((actual) => {
-    status.temperature = actual.temp;
-    status.humidity = actual.humidity;
+    status.temperature = actual.temp.toFixed(1);
+    status.humidity = actual.humidity.toFixed(1);
     status.hState = 0 + status.hState;
     if (thermostatIsOn()) {
       if (isInThreshold()) {
@@ -73,7 +73,7 @@ function update() {
 }
 
 function storeDatabase() {
-  db.write(status.temperature);
+  db.write(status);
 }
 
 function getStatus() {

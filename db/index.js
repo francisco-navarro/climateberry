@@ -15,9 +15,11 @@ function init() {
   });
 }
 
-function write(temperature) {
+function write(status) {
   let state = new db.State({
-    temperature,
+    temperature: status.temperature,
+    target: status.HeatingState ? status.target : 15,
+    heatingState: status.HeatingState,
     timestamp: new Date(),
   });
   return state.save();

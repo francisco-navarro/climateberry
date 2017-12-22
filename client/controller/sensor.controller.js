@@ -5,18 +5,17 @@ function temp() {
       const pyshell = new PythonShell('readtemperature.py', {
         // scriptPath: '/root/Adafruit_Python_DHT/examples/'
       });
-      
-      pyshell.on('message', function (message) {
+
+      pyshell.on('message', (message) => {
         console.log(message);
         resolve(JSON.parse(message));
       });
-      
+
       // end the input stream and allow the process to exit
-      pyshell.end(function (err) {
+      pyshell.end((err) => {
         if (err) throw err;
       });
-      
-    } catch(err) {
+    } catch (err) {
       console.warn(err);
       reject(err);
     }
@@ -24,5 +23,5 @@ function temp() {
 }
 
 module.exports = {
-  temp
+  temp,
 };
