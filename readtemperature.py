@@ -31,8 +31,8 @@ humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, 23)
 if humidity is not None and temperature is not None:
     #print('temp={0:0.1f}  humidity={1:0.1f}'.format(temperature, humidity))
     status = {
-        "temp": temperature,
-        "humidity": humidity
+        "temp": round(temperature,1),
+        "humidity": round(humidity,1)
     }
     statusJSON = json.dumps(status)
     print(statusJSON)
