@@ -33,7 +33,9 @@
     "moment": "^2.20.1",
     "mongoose": "^4.13.7",
     "mqtt": "^2.14.0",
-    "python-shell": "^0.4.0"
+    "python-shell": "^0.4.0",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "eslint": "^4.12.0",
