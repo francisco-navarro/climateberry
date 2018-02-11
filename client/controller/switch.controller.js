@@ -7,8 +7,8 @@ function tvOff() {
     url: `${url}led/on`,
     timeout: 1000,
   })
-    .then(() => ({ state: 1 }))
-    .catch(() => ({ state: 0 }));
+    .then(() => 1)
+    .catch(() => 0);
 }
 
 function tvState() {
@@ -16,8 +16,8 @@ function tvState() {
     url,
     timeout: 1000,
   })
-    .then(() => ({ state: 1 }))
-    .catch(() => ({ state: 0 }));
+    .then(() => 1)
+    .catch(() => 0);
 }
 
 module.exports = {
