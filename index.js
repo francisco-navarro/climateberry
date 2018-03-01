@@ -15,5 +15,7 @@ if (clientMode) {
   serverIndex(app);
 }
 
+app.use('/static', express.static('public'));
+
 app.listen(PORT, () =>
   console.log(`Climateberry started in ${PORT}`));

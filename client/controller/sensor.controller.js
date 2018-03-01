@@ -8,7 +8,11 @@ function temp() {
 
       pyshell.on('message', (message) => {
         console.log(message);
-        resolve(JSON.parse(message));
+	try{
+		resolve(JSON.parse(message));
+	}catch(ex) {
+		resolve({})
+	}
       });
 
       // end the input stream and allow the process to exit
