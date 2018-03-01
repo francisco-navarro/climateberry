@@ -1,5 +1,5 @@
 function temp() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     try {
       const PythonShell = require('python-shell');
       const pyshell = new PythonShell('readtemperature.py', {
@@ -8,11 +8,11 @@ function temp() {
 
       pyshell.on('message', (message) => {
         console.log(message);
-	try{
-		resolve(JSON.parse(message));
-	}catch(ex) {
-		resolve({})
-	}
+        try {
+          resolve(JSON.parse(message));
+        } catch (ex) {
+          resolve({});
+        }
       });
 
       // end the input stream and allow the process to exit
@@ -21,7 +21,7 @@ function temp() {
       });
     } catch (err) {
       console.warn(err);
-      reject(err);
+      resolve({});
     }
   });
 }

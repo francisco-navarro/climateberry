@@ -53,23 +53,24 @@ function init() {
 
 function update() {
   return sensor.temp().then((actual) => {
-    if(!actual.temp) return;
-    status.temperature = actual.temp.toFixed(1);
-    status.humidity = actual.humidity.toFixed(1);
-    status.hState = 0 + status.hState;
-    if (thermostatIsOn()) {
-      if (isInThreshold()) {
-        // No hacemos nada
-      } else if (isBelowTarget()) {
-        io.writeTemp(true);
+    if (actual.temp) {
+      status.temperature = actual.temp.toFixed(1);
+      status.humidity = actual.humidity.toFixed(1);
+      status.hState = 0 + status.hState;
+      if (thermostatIsOn()) {
+        if (isInThreshold()) {
+          // No hacemos nada
+        } else if (isBelowTarget()) {
+          io.writeTemp(true);
+        } else {
+          io.writeTemp(false);
+        }
       } else {
+        console.log('apagado');
         io.writeTemp(false);
       }
-    } else {
-      console.log('apagado');
-      io.writeTemp(false);
+      mqtt.update(status);
     }
-    mqtt.update(status);
   });
 }
 
