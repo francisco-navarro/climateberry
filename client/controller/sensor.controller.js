@@ -4,6 +4,7 @@ function temp() {
   if (promise) return promise;
 
   promise = new Promise((resolve) => {
+    console.log('python read temp');
     try {
       const PythonShell = require('python-shell');
       const pyshell = new PythonShell('readtemperature.py', {

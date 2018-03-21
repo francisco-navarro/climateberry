@@ -75,7 +75,7 @@ function update() {
 }
 
 function storeDatabase() {
-  db.write(status);
+  //db.write(status);
 }
 
 function getStatus() {
