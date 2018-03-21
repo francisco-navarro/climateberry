@@ -1,5 +1,9 @@
+let promise;
+
 function temp() {
-  return new Promise((resolve) => {
+  if (promise) return promise;
+
+  promise = new Promise((resolve) => {
     try {
       const PythonShell = require('python-shell');
       const pyshell = new PythonShell('readtemperature.py', {
@@ -8,6 +12,7 @@ function temp() {
 
       pyshell.on('message', (message) => {
         console.log(message);
+        promise = undefined;
         try {
           resolve(JSON.parse(message));
         } catch (ex) {
@@ -21,9 +26,12 @@ function temp() {
       });
     } catch (err) {
       console.warn(err);
+      promise = undefined;
       resolve({});
     }
   });
+
+  return promise;
 }
 
 module.exports = {
