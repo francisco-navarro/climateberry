@@ -6,5 +6,5 @@ const db = require('../db/index');
 module.exports = function init(app) {
   app.use('/api', router());
   io.init();
-  db.init();
+  //db.init();
 };
